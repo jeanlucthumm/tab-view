@@ -1,0 +1,68 @@
+body {
+  background: #302F2C;
+}
+
+.thumb-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 80%;
+}
+
+.thumb {
+  display: flex;
+  flex-direction: column;
+  max-width: 256px;
+  max-height: 256px;
+  margin: 10px 34px;
+}
+
+.pic-container {
+  position: relative;
+  z-index: 1;
+}
+
+.close-button {
+  position: absolute;
+  /*background-color: transparent;*/
+  background: url("baseline-clear-24px.svg");
+  background-size: contain;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  z-index: 3;
+}
+
+.close-button:focus {
+  border: none;
+  outline: none;
+}
+
+.close-button:hover {
+  display: none;
+  outline: #000000;
+  border: #000000;
+}
+
+.pic {
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  box-shadow: 10px 10px #020202;
+}
+
+.pic:hover {
+  border-radius: 10px;
+}
+
+.title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  color: #F2F2F2;
+  text-align: center;
+}
