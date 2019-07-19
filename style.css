@@ -38,13 +38,7 @@ body {
   z-index: 3;
 }
 
-.close-button:focus {
-  border: none;
-  outline: none;
-}
-
 .close-button:hover {
-  display: none;
   outline: #000000;
   border: #000000;
 }
