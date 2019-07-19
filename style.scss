@@ -3,16 +3,15 @@ body {
 }
 
 .thumb-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-  width: 80%;
+  margin: 0 auto;
+  width: 1200px;
+  padding-left: 0;
+  font-size: 0;
 }
 
 .thumb {
-  display: flex;
-  flex-direction: column;
-  max-width: 256px;
+  display: inline-block;
+  width: 256px;
   max-height: 256px;
   margin: 10px 34px;
 }
@@ -59,4 +58,16 @@ body {
   font-size: 13px;
   color: #F2F2F2;
   text-align: center;
+}
+
+@media screen and (max-width: 779px) {
+  .thumb-container { width: 324px; }
+}
+
+@media screen and (min-width: 779px) and (max-width: 1150px) {
+  .thumb-container { width: 648px; }
+}
+
+@media screen and (min-width: 1150px) and (max-width: 1700px) {
+  .thumb-container { width: 972px; }
 }

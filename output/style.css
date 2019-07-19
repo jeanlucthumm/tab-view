@@ -1,0 +1,64 @@
+body {
+  background: #302F2C; }
+
+.thumb-container {
+  margin: 0 auto;
+  width: 1200px;
+  padding-left: 0;
+  font-size: 0; }
+
+.thumb {
+  display: inline-block;
+  width: 256px;
+  max-height: 256px;
+  margin: 10px 34px; }
+
+.pic-container {
+  position: relative;
+  z-index: 1; }
+
+.close-button {
+  position: absolute;
+  /*background-color: transparent;*/
+  background: url("baseline-clear-24px.svg");
+  background-size: contain;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  z-index: 3; }
+
+.close-button:hover {
+  outline: #000000;
+  border: #000000; }
+
+.pic {
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  box-shadow: 10px 10px #020202; }
+
+.pic:hover {
+  border-radius: 10px; }
+
+.title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  color: #F2F2F2;
+  text-align: center; }
+
+@media screen and (max-width: 779px) {
+  .thumb-container {
+    width: 324px; } }
+
+@media screen and (min-width: 779px) and (max-width: 1150px) {
+  .thumb-container {
+    width: 648px; } }
+
+@media screen and (min-width: 1150px) and (max-width: 1700px) {
+  .thumb-container {
+    width: 972px; } }

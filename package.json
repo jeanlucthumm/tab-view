@@ -1,0 +1,17 @@
+{
+  "name": "tab_view",
+  "version": "0.0.1",
+  "description": "Get a visual and interactive overview of all your tabs",
+  "dependencies": {
+    "gulp-clean": "^0.4.0",
+    "gulp-sass": "^4.0.2",
+    "sass": "^1.22.7"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Jean-Luc Thumm <jeanlucthumm@gmail.com>",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
