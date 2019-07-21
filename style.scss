@@ -2,7 +2,7 @@ body {
   background: #302F2C;
 }
 
-.thumb-container {
+.thumb-container { /*real small pp */
   margin: 0 auto;
   width: 1200px;
   padding-left: 0;
@@ -12,6 +12,7 @@ body {
 .thumb {
   display: inline-block;
   width: 256px;
+  font-size: 13px;
   max-height: 256px;
   margin: 10px 34px;
 }
@@ -23,8 +24,7 @@ body {
 
 .close-button {
   position: absolute;
-  /*background-color: transparent;*/
-  background: url("baseline-clear-24px.svg");
+  background: url("../baseline-clear-24px.svg");
   background-size: contain;
   outline: none;
   border: none;
@@ -37,20 +37,11 @@ body {
   z-index: 3;
 }
 
-.close-button:hover {
-  outline: #000000;
-  border: #000000;
-}
-
 .pic {
   width: 100%;
   margin-bottom: 5px;
   border-radius: 8px;
   box-shadow: 10px 10px #020202;
-}
-
-.pic:hover {
-  border-radius: 10px;
 }
 
 .title {
@@ -60,14 +51,19 @@ body {
   text-align: center;
 }
 
-@media screen and (max-width: 779px) {
-  .thumb-container { width: 324px; }
+$twidth: 324px; // width of one thumbnail
+$trat: 1.05; // max ratio of page to content
+
+@media screen and (max-width: 2 * $twidth * $trat) {
+  .thumb-container {
+    width: $twidth;
+  }
 }
 
-@media screen and (min-width: 779px) and (max-width: 1150px) {
-  .thumb-container { width: 648px; }
-}
-
-@media screen and (min-width: 1150px) and (max-width: 1700px) {
-  .thumb-container { width: 972px; }
+@for $i from 2 through 4 {
+  @media screen and (min-width: $i * $twidth * $trat) and (max-width: ($i + 1) * $twidth * $trat) {
+    .thumb-container {
+      width: $i * $twidth;
+    }
+  }
 }
