@@ -17,6 +17,9 @@ function loadThumbnails(winTabs, thumb_height) {
         // Set thumbnail picture
         let pic = thumbnail.getElementsByClassName('pic')[0];
         pic.setAttribute("src", items[key]);
+        pic.setAttribute("window", tab.windowId);
+        pic.setAttribute("index", tab.index);
+        pic.addEventListener("click", pictureClick);
         container.appendChild(thumbnail);
 
         // Set thumbnail title
@@ -48,3 +51,9 @@ chrome.tabs.query({"currentWindow": true}, winTabs => {
   })
 });
 
+function pictureClick() {
+  console.log("Clicked picture");
+  let window = parseInt(this.getAttribute('window'));
+  let index = parseInt(this.getAttribute('index'));
+  chrome.tabs.highlight({windowId: window, tabs: [index]})
+}
