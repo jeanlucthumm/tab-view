@@ -12,15 +12,15 @@ function loadThumbnails(winTabs, thumb_height) {
       // Check that we have a thumbnail
       if (items.hasOwnProperty(key)) {
         let thumbnail = template.cloneNode(true);
-        thumbnail.setAttribute("id", "template" + key);
+        thumbnail.setAttribute('id', 'thumb' + key);
+        container.appendChild(thumbnail);
 
         // Set thumbnail picture
         let pic = thumbnail.getElementsByClassName('pic')[0];
-        pic.setAttribute("src", items[key]);
-        pic.setAttribute("window", tab.windowId);
-        pic.setAttribute("index", tab.index);
-        pic.addEventListener("click", pictureClick);
-        container.appendChild(thumbnail);
+        pic.setAttribute('src', items[key]);
+        pic.setAttribute('window', tab.windowId);
+        pic.setAttribute('index', tab.index);
+        pic.addEventListener('click', pictureClick);
 
         // Set thumbnail title
         let title = thumbnail.getElementsByClassName('title')[0];
@@ -29,6 +29,11 @@ function loadThumbnails(winTabs, thumb_height) {
         } else {
           title.textContent = "No Title";
         }
+
+        // Set close button
+        let close_button = thumbnail.getElementsByClassName('close-button')[0];
+        close_button.setAttribute('tabId', tab.id);
+        close_button.addEventListener('click', closeClick);
       }
       console.log(items);
     })
@@ -52,8 +57,13 @@ chrome.tabs.query({"currentWindow": true}, winTabs => {
 });
 
 function pictureClick() {
-  console.log("Clicked picture");
   let window = parseInt(this.getAttribute('window'));
   let index = parseInt(this.getAttribute('index'));
   chrome.tabs.highlight({windowId: window, tabs: [index]})
+}
+
+function closeClick() {
+  let tabId = parseInt(this.getAttribute('tabId'));
+  chrome.tabs.remove(tabId);
+  this.closest('.thumb').remove();
 }
