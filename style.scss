@@ -51,6 +51,10 @@ body {
   text-align: center;
 }
 
+#template {
+  display: none;
+}
+
 $twidth: 324px; // width of one thumbnail
 $trat: 1.05; // max ratio of page to content
 

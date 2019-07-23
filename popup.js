@@ -1,4 +1,5 @@
-let div = document.getElementById('thumbnails');
+const container = document.getElementById('thumb-container');
+const template = document.getElementById('template');
 
 // Loads all thumbnails for tabs given by winTabs.
 // winTabs should be the results of a call to chrome.tabs.query.
@@ -10,11 +11,21 @@ function loadThumbnails(winTabs, thumb_height) {
     chrome.storage.local.get([key], items => {
       // Check that we have a thumbnail
       if (items.hasOwnProperty(key)) {
-        let thumbnail = document.createElement("img");
-        thumbnail.setAttribute("src", items[key]);
+        let thumbnail = template.cloneNode(true);
         thumbnail.setAttribute("id", "template" + key);
-        thumbnail.setAttribute("height", thumb_height);
-        div.appendChild(thumbnail);
+
+        // Set thumbnail picture
+        let pic = thumbnail.getElementsByClassName('pic')[0];
+        pic.setAttribute("src", items[key]);
+        container.appendChild(thumbnail);
+
+        // Set thumbnail title
+        let title = thumbnail.getElementsByClassName('title')[0];
+        if (tab.title) {
+          title.textContent = tab.title;
+        } else {
+          title.textContent = "No Title";
+        }
       }
       console.log(items);
     })
