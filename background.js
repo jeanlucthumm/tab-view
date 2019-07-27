@@ -24,4 +24,7 @@ chrome.tabs.onActivated.addListener(activeInfo => {
   )
 });
 
-console.log("Hello World");
+chrome.browserAction.onClicked.addListener((tab) => {
+  chrome.tabs.executeScript({file: 'jquery-3.4.1.min.js'});
+  chrome.tabs.executeScript({file: 'content.js'});
+});

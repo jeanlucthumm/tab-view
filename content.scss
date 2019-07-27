@@ -1,0 +1,36 @@
+// Reset
+#tab-view-content-wrapper #tab-view-iframe #tab-view-modal-container {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}
+
+#tab-view-modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000000000;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  #tab-view-modal {
+    position: relative;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    top: 10%;
+
+    #tab-view-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
