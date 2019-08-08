@@ -1,12 +1,14 @@
 body {
-  background: #302F2C;
+  //background: #302F2C;
+  background-size: contain;
+  background: url("back.jpg") no-repeat;
 }
 
-.thumb-container { /*real small pp */
-  margin: 0 auto;
+.thumb-container {
   width: 1200px;
   padding-left: 0;
   font-size: 0;
+  margin: 40px auto 0;
 }
 
 .thumb {
@@ -20,6 +22,11 @@ body {
 .pic-container {
   position: relative;
   z-index: 1;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .close-button {
@@ -28,13 +35,17 @@ body {
   background-size: contain;
   outline: none;
   border: none;
-  border-radius: 50%;
   padding: 0;
   top: 5px;
   right: 5px;
   width: 24px;
   height: 24px;
   z-index: 3;
+
+  &:hover {
+    border-radius: 50%;
+    border: 3px #020202;
+  }
 }
 
 .pic {
