@@ -38,6 +38,38 @@
       border-color: #020202;
       border-width: 2px;
     }
+
+    #tab-view-modal-close-button {
+      background: url("delete-button.png");
+      background-size: contain;
+      position: absolute;
+
+      top: 11px;
+      right: 7px;
+      width: 29px;
+      height: 29px;
+      z-index: 2000000001;
+
+      outline: none;
+      border: none;
+      padding: 0;
+    }
+
+    #tab-view-modal-scan-button {
+      background: url("mag.png");
+      background-size: contain;
+      position: absolute;
+
+      top: 50px;
+      right: 7px;
+      width: 26px;
+      height: 26px;
+      z-index: 2000000001;
+
+      outline: none;
+      border: none;
+      padding: 0;
+    }
   }
 }
 

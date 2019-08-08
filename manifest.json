@@ -34,6 +34,8 @@
   "web_accessible_resources": [
     "popup.html",
     "content.css",
-    "modal.html"
+    "modal.html",
+    "delete-button.png",
+    "mag.png"
   ]
 }
