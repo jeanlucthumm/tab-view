@@ -29,9 +29,14 @@ function setup_modal() {
 function close() {
   let style = document.getElementById('tab-view-stylesheet');
   let wrapper = document.getElementById('tab-view-content-wrapper');
+  let container = document.getElementById('tab-view-modal-container');
 
-  if (style) style.remove();
-  if (wrapper) wrapper.remove();
+  // Fade out
+  container.style.animation = 'fadeOut 0.3s';
+  container.addEventListener('animationend', () => {
+    if (style) style.remove();
+    if (wrapper) wrapper.remove();
+  });
 }
 
 window.addEventListener('message', onMessage, false);
