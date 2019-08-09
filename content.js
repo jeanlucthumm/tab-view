@@ -24,6 +24,8 @@ setup();
 function setup_modal() {
   let close_button = document.getElementById('tab-view-modal-close-button');
   close_button.onclick = close;
+
+  document.body.classList.add('tab-view-modal-open-no-scroll');
 }
 
 function close() {
@@ -36,6 +38,7 @@ function close() {
   container.addEventListener('animationend', () => {
     if (style) style.remove();
     if (wrapper) wrapper.remove();
+    document.body.classList.remove('tab-view-modal-open-no-scroll');
   });
 }
 
