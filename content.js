@@ -1,3 +1,9 @@
+// Prevent multiple injections
+if (!window.content_injected) {
+  window.content_injected = true;
+  setup();
+}
+
 function setup() {
   // Inject the CSS
   let style = document.createElement('link');
@@ -18,9 +24,10 @@ function setup() {
     setup_modal();
   });
   wrapper.appendTo($(document.body));
-}
 
-setup();
+  // Register event listeners
+  window.addEventListener('message', onMessage, false);
+}
 
 function setup_modal() {
   let close_button = document.getElementById('tab-view-modal-close-button');
@@ -55,10 +62,10 @@ function close() {
     document.body.classList.remove(
       'tab-view-modal-open-disable-scroll-with-bar',
       'tab-view-modal-open-disable-scroll-no-bar');
+    window.content_injected = false;
   });
 }
 
-window.addEventListener('message', onMessage, false);
 
 function onMessage(event) {
   if (event.data === 'close') {
