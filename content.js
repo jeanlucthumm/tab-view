@@ -14,6 +14,7 @@ function setup() {
     wrapper.find('#tab-view-iframe')
       .attr('src', chrome.runtime.getURL('popup.html'));
 
+    // TODO the wrapper may not be on the DOM when this runs
     setup_modal();
   });
   wrapper.appendTo($(document.body));
@@ -25,7 +26,12 @@ function setup_modal() {
   let close_button = document.getElementById('tab-view-modal-close-button');
   close_button.onclick = close;
 
-  document.body.classList.add('tab-view-modal-open-no-scroll');
+  // Disable scrolling and prevent reflow only if scroll bar was already there
+  if (document.body.scrollHeight > window.innerHeight) {
+    document.body.classList.add('tab-view-modal-open-disable-scroll-with-bar');
+  } else {
+    document.body.classList.add('tab-view-modal-open-disable-scroll-no-bar');
+  }
 }
 
 function close() {
@@ -38,7 +44,9 @@ function close() {
   container.addEventListener('animationend', () => {
     if (style) style.remove();
     if (wrapper) wrapper.remove();
-    document.body.classList.remove('tab-view-modal-open-no-scroll');
+    document.body.classList.remove(
+      'tab-view-modal-open-disable-scroll-with-bar',
+      'tab-view-modal-open-disable-scroll-no-bar');
   });
 }
 

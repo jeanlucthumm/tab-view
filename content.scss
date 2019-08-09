@@ -9,11 +9,17 @@
   background: transparent;
 }
 
-// Prevent body from scrolling
-body.tab-view-modal-open-no-scroll {
+// Prevent body from scrolling. Use when there is overflow in body
+body.tab-view-modal-open-disable-scroll-with-bar {
   height: 100vh !important;
   overflow-y: hidden !important;
   padding-right: 15px !important; // to prevent reflow from removing scroll bar
+}
+
+// Prevent body from scrolling. Use when there is not overflow in body
+body.tab-view-modal-open-disable-scroll-no-bar {
+  height: 100vh !important;
+  overflow-y: hidden !important;
 }
 
 #tab-view-modal-container {
