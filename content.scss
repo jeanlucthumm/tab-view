@@ -48,11 +48,12 @@
       right: 7px;
       width: 29px;
       height: 29px;
+      padding: 0;
       z-index: 2000000001;
 
       outline: none;
       border: none;
-      padding: 0;
+      cursor: default;
     }
 
     #tab-view-modal-scan-button {
@@ -64,11 +65,12 @@
       right: 8px;
       width: 26px;
       height: 26px;
+      padding: 0;
       z-index: 2000000001;
 
       outline: none;
       border: none;
-      padding: 0;
+      cursor: default;
     }
   }
 }

@@ -59,6 +59,7 @@ chrome.tabs.query({"currentWindow": true}, winTabs => {
 function pictureClick() {
   let window = parseInt(this.getAttribute('window'));
   let index = parseInt(this.getAttribute('index'));
+  this.parent.postMessage('close', '*'); // close modal after tab switch
   chrome.tabs.highlight({windowId: window, tabs: [index]})
 }
 
