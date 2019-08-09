@@ -35,7 +35,6 @@ function loadThumbnails(winTabs, thumb_height) {
         close_button.setAttribute('tabId', tab.id);
         close_button.addEventListener('click', closeClick);
       }
-      console.log(items);
     })
   }
 }
@@ -57,10 +56,10 @@ chrome.tabs.query({"currentWindow": true}, winTabs => {
 });
 
 function pictureClick() {
-  let window = parseInt(this.getAttribute('window'));
+  let window_num = parseInt(this.getAttribute('window'));
   let index = parseInt(this.getAttribute('index'));
-  this.parent.postMessage('close', '*'); // close modal after tab switch
-  chrome.tabs.highlight({windowId: window, tabs: [index]})
+  window.parent.postMessage('close', '*'); // close modal after tab switch
+  chrome.tabs.highlight({windowId: window_num, tabs: [index]})
 }
 
 function closeClick() {

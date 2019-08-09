@@ -30,13 +30,14 @@ function close() {
   let style = document.getElementById('tab-view-stylesheet');
   let wrapper = document.getElementById('tab-view-content-wrapper');
 
-  style.remove();
-  wrapper.remove();
+  if (style) style.remove();
+  if (wrapper) wrapper.remove();
 }
 
 window.addEventListener('message', onMessage, false);
 
 function onMessage(event) {
-  console.log("From inside" + event.origin); // DEBUG
-  console.log(event.data); // DEBUG
+  if (event.data === 'close') {
+    close();
+  }
 }
