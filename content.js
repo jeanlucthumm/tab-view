@@ -25,6 +25,9 @@ setup();
 function setup_modal() {
   let close_button = document.getElementById('tab-view-modal-close-button');
   close_button.onclick = close;
+  let scan_button = document.getElementById('tab-view-modal-scan-button');
+  scan_button.onclick = scan;
+
 
   // Disable scrolling and prevent reflow only if scroll bar was already there
   if (document.body.scrollHeight > window.innerHeight) {
@@ -32,6 +35,11 @@ function setup_modal() {
   } else {
     document.body.classList.add('tab-view-modal-open-disable-scroll-no-bar');
   }
+}
+
+function scan() {
+  close();
+  chrome.runtime.sendMessage('scan');
 }
 
 function close() {
