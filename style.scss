@@ -1,7 +1,7 @@
 body {
   //background: #302F2C;
   background-size: contain;
-  background: url("back.jpg") no-repeat;
+  background: url("back.jpg") no-repeat fixed;
 }
 
 .thumb-container {
@@ -9,6 +9,10 @@ body {
   padding-left: 0;
   font-size: 0;
   margin: 40px auto 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .thumb {
@@ -80,7 +84,6 @@ $tRat: 1.05; // max ratio of page to content
     width: 5 * $tWidth;
   }
 }
-
 
 @for $i from 2 through 4 {
   @media screen and (min-width: $i * $tWidth * $tRat) and (max-width: ($i + 1) * $tWidth * $tRat) {
