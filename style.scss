@@ -33,6 +33,14 @@ body::-webkit-scrollbar {
   }
 }
 
+.favicon {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+}
+
 .close-button {
   position: absolute;
   background: url("baseline-clear-24px.svg");

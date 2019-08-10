@@ -27,6 +27,18 @@ function loadThumbnails(winTabs, thumb_height) {
         pic.style.height = (ratio * tab.height).toString() + 'px';
       }
 
+      // Favicon if necessary
+      if (tab.favIconUrl && !items.hasOwnProperty(key)) {
+        let fav = thumbnail.getElementsByClassName('favicon')[0];
+        fav.style.maxWidth = '15%';
+        fav.src = tab.favIconUrl;
+        fav.onload = () => {
+          fav.style.display = 'inline';
+          fav.style.marginLeft = (-fav.scrollWidth / 2).toString() + 'px';
+          fav.style.marginTop = (-fav.scrollHeight / 2).toString() + 'px';
+        }
+      }
+
       // Title
       let title = thumbnail.getElementsByClassName('title')[0];
       if (tab.title) {
