@@ -8,13 +8,6 @@ chrome.runtime.onInstalled.addListener(() => {
   })
 });
 
-function saveToStorage(windowId, tabId, dataUrl) {
-  let key = genThumbDataKey(windowId, tabId);
-  chrome.storage.local.set({[key]: dataUrl}, () => {
-    console.log("Stored data URL with key: " + key); // DEBUG
-  });
-}
-
 chrome.tabs.onActivated.addListener(activeInfo => {
   captureThumbnail(activeInfo.windowId, activeInfo.tabId);
 });
