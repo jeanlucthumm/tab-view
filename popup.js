@@ -41,6 +41,13 @@ function loadThumbnails(winTabs, thumb_height) {
 
       // Title
       let title = thumbnail.getElementsByClassName('title')[0];
+      if (tab.favIconUrl) {
+        let fav = thumbnail.getElementsByClassName('favicon-title')[0];
+        fav.src = tab.favIconUrl;
+        fav.onload = () => {
+          fav.style.display = 'inline';
+        }
+      }
       if (tab.title) {
         title.textContent = tab.title;
       } else {

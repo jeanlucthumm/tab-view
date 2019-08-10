@@ -67,7 +67,22 @@ body::-webkit-scrollbar {
   box-shadow: 10px 10px #020202;
 }
 
+.title-container {
+  padding: 0 9px;
+  margin-top: 9px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.favicon-title {
+  display: none;
+  margin: 0 4px 0 0;
+  height: 13px;
+}
+
 .title {
+  margin: 0;
   font-family: 'Raleway', sans-serif;
   font-size: 13px;
   color: #F2F2F2;
