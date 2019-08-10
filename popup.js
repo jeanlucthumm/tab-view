@@ -9,32 +9,36 @@ function loadThumbnails(winTabs, thumb_height) {
     let key = genThumbDataKey(tab.windowId, tab.id);
     console.log("Getting for key: " + key); // DEBUG
     chrome.storage.local.get([key], items => {
-      // Check that we have a thumbnail
+      let thumbnail = template.cloneNode(true);
+      thumbnail.setAttribute('id', 'thumb' + key);
+      container.appendChild(thumbnail);
+
+      // Picture
+      let pic = thumbnail.getElementsByClassName('pic')[0];
+      pic.setAttribute('window', tab.windowId);
+      pic.setAttribute('index', tab.index);
+      pic.addEventListener('click', pictureClick);
       if (items.hasOwnProperty(key)) {
-        let thumbnail = template.cloneNode(true);
-        thumbnail.setAttribute('id', 'thumb' + key);
-        container.appendChild(thumbnail);
-
-        // Set thumbnail picture
-        let pic = thumbnail.getElementsByClassName('pic')[0];
+        // Display stored screenshot if we have one
         pic.setAttribute('src', items[key]);
-        pic.setAttribute('window', tab.windowId);
-        pic.setAttribute('index', tab.index);
-        pic.addEventListener('click', pictureClick);
-
-        // Set thumbnail title
-        let title = thumbnail.getElementsByClassName('title')[0];
-        if (tab.title) {
-          title.textContent = tab.title;
-        } else {
-          title.textContent = "No Title";
-        }
-
-        // Set close button
-        let close_button = thumbnail.getElementsByClassName('close-button')[0];
-        close_button.setAttribute('tabId', tab.id);
-        close_button.addEventListener('click', closeClick);
+      } else {
+        // Height of default picture must match tab it's representing
+        let ratio = 256 / tab.width;
+        pic.style.height = (ratio * tab.height).toString() + 'px';
       }
+
+      // Title
+      let title = thumbnail.getElementsByClassName('title')[0];
+      if (tab.title) {
+        title.textContent = tab.title;
+      } else {
+        title.textContent = "No Title";
+      }
+
+      // Close button
+      let close_button = thumbnail.getElementsByClassName('close-button')[0];
+      close_button.setAttribute('tabId', tab.id);
+      close_button.addEventListener('click', closeClick);
     })
   }
 }
