@@ -40,6 +40,15 @@ function captureThumbnail(windowId, tabId, callback) {
   });
 }
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  chrome.windows.getCurrent(window => {
+    if (tab.active && tab.windowId === window.id
+      && changeInfo.status === 'complete') {
+      captureThumbnail(tab.windowId, tab.id);
+    }
+  });
+});
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message === 'scan') {
     let tab = sender.tab;
