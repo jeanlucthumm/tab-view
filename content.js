@@ -45,11 +45,12 @@ function setup_modal() {
 }
 
 function scan() {
-  close();
-  chrome.runtime.sendMessage('scan');
+  close(() => {
+    chrome.runtime.sendMessage('scan');
+  });
 }
 
-function close() {
+function close(callback) {
   let style = document.getElementById('tab-view-stylesheet');
   let wrapper = document.getElementById('tab-view-content-wrapper');
   let container = document.getElementById('tab-view-modal-container');
@@ -63,6 +64,10 @@ function close() {
       'tab-view-modal-open-disable-scroll-with-bar',
       'tab-view-modal-open-disable-scroll-no-bar');
     window.content_injected = false;
+
+    chrome.runtime.sendMessage('closed');
+
+    if (callback) callback();
   });
 }
 

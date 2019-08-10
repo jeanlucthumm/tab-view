@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 function saveToStorage(windowId, tabId, dataUrl) {
-  let key = generateKey(windowId, tabId);
+  let key = genThumbDataKey(windowId, tabId);
   chrome.storage.local.set({[key]: dataUrl}, () => {
     console.log("Stored data URL with key: " + key); // DEBUG
   });
@@ -23,16 +23,21 @@ chrome.tabs.onActivated.addListener(activeInfo => {
 // and tabId refer to the currently visible tab and must be known
 // beforehand. Callback is called immediately after the capture is taken
 function captureThumbnail(windowId, tabId, callback) {
-  chrome.tabs.captureVisibleTab(
-    {format: 'jpeg', quality: 70},
-    dataUrl => {
-      let key = generateKey(windowId, tabId);
-      chrome.storage.local.set({[key]: dataUrl}, () => {
-        console.log("Stored data URL with key: " + key); // DEBUG
-      });
-      if (callback) callback();
-    }
-  )
+  // If flag is set then modal is open and we don't capture
+  let key = genModalFlagKey(tabId);
+  chrome.storage.local.get(key, items => {
+    if (items.hasOwnProperty(key)) return;
+
+    chrome.tabs.captureVisibleTab(
+      {format: 'jpeg', quality: 70},
+      dataUrl => {
+        let key = genThumbDataKey(windowId, tabId);
+        chrome.storage.local.set({[key]: dataUrl}, () => {
+        });
+        if (callback) callback();
+      }
+    )
+  });
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -51,6 +56,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }, inject);
       });
     });
+  } else if (message === 'closed') {
+    let key = genModalFlagKey(sender.tab.id);
+    chrome.storage.local.remove(key);
   }
 
   sendResponse();
@@ -61,7 +69,14 @@ chrome.browserAction.onClicked.addListener((tab) => {
 });
 
 function inject() {
+  chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+    if (tabs.length === 0) return;
+    let key = genModalFlagKey(tabs[0].id);
+    chrome.storage.local.set({[key]: true});
+    console.log("set modal flag for key: " + key);
+  });
   chrome.tabs.executeScript({file: 'jquery-3.4.1.min.js'});
+  chrome.tabs.executeScript({file: 'common.js'});
   chrome.tabs.executeScript({file: 'content.js'});
 }
 

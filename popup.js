@@ -6,7 +6,7 @@ const template = document.getElementById('template');
 // thumb_height is the thumbnail display height
 function loadThumbnails(winTabs, thumb_height) {
   for (let tab of winTabs) {
-    let key = generateKey(tab.windowId, tab.id);
+    let key = genThumbDataKey(tab.windowId, tab.id);
     console.log("Getting for key: " + key); // DEBUG
     chrome.storage.local.get([key], items => {
       // Check that we have a thumbnail
