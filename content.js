@@ -71,9 +71,15 @@ function close(callback) {
   });
 }
 
-
 function onMessage(event) {
-  if (event.data === 'close') {
+  if (event.data === 'close' && window.content_injected) {
     close();
   }
 }
+
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && window.content_injected) {
+    // Escape key
+    close();
+  }
+});

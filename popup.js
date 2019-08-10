@@ -90,3 +90,9 @@ function closeClick() {
   chrome.tabs.remove(tabId);
   this.closest('.thumb').remove();
 }
+
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape') {
+    window.parent.postMessage('close', '*');
+  }
+});
