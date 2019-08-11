@@ -17,7 +17,9 @@ function loadThumbnails(winTabs, thumb_height) {
       let pic = thumbnail.getElementsByClassName('pic')[0];
       pic.setAttribute('window', tab.windowId);
       pic.setAttribute('index', tab.index);
+      pic.setAttribute('tabId', tab.id);
       pic.addEventListener('click', pictureClick);
+      pic.addEventListener('auxclick', pictureCloseClick);
       if (items.hasOwnProperty(key)) {
         // Display stored screenshot if we have one
         pic.setAttribute('src', items[key]);
@@ -83,6 +85,14 @@ function pictureClick() {
   let index = parseInt(this.getAttribute('index'));
   window.parent.postMessage('close', '*'); // close modal after tab switch
   chrome.tabs.highlight({windowId: window_num, tabs: [index]})
+}
+
+function pictureCloseClick(event) {
+  if (event.which === 2) {
+    let tabId = parseInt(this.getAttribute('tabId'));
+    chrome.tabs.remove(tabId);
+    this.closest('.thumb').remove();
+  }
 }
 
 function closeClick() {
