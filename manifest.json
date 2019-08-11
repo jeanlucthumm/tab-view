@@ -6,6 +6,7 @@
     "<all_urls>",
     "activeTab",
     "storage",
+    "unlimitedStorage",
     "tabs"
   ],
   "manifest_version": 2,
