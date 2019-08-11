@@ -42,6 +42,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   });
 });
 
+chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
+  let key = genThumbDataKey(removeInfo.windowId, tabId);
+  chrome.storage.local.remove(key);
+});
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message === 'scan') {
     let tab = sender.tab;
