@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TabView Help</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="install.css" rel="stylesheet">
+</head>
+<body>
+<div id="content">
+
+    <h1 class="title">TabView</h1>
+
+    <hr class="break-line">
+
+    <div class="big-bullet">
+        <img src="images/keyboard.svg" alt="keyboard" class="big-bullet-icon">
+        <div class="big-bullet-content">
+            <h2 class="big-bullet-heading">Set a keyboard shortcut.</h2>
+            <p class="big-bullet-text">
+                Go to chrome://extensions. Navigate to hamburger menu
+                at the top right and set a keyboard shortcut for TabView.
+            </p>
+        </div>
+    </div>
+
+    <div class="big-bullet">
+        <img src="images/tabs-full.svg" alt="tabs" class="big-bullet-icon">
+        <div class="big-bullet-content">
+            <h2 class="big-bullet-heading">Only seen tabs are captured.</h2>
+            <p class="big-bullet-text">
+                TabView can't display thumbnails for tabs that have never
+                been clicked on. If a tab is missing a thumbnail, navigate
+                to it or press the
+                <img src="images/scan-icon-black.png" alt="scan icon" class="inline-icon">
+                button to scan all tabs in the window.
+            </p>
+        </div>
+    </div>
+
+    <hr class="break-line">
+
+    <div id="shortcut-list-wrapper">
+        <ul id="shortcut-list">
+            <li class="shortcut-entry">
+                <div id="esc-shortcut-wrapper" class="shortcut-icon-wrapper">
+                    <img src="images/esc.svg" alt="escape key"
+                         id="esc-shortcut-icon" class="shortcut-icon"/>
+                </div>
+                <p class="shortcut-text">Close TabView modal</p>
+            </li>
+            <li class="shortcut-entry">
+                <div id="mouse-shortcut-wrapper" class="shortcut-icon-wrapper">
+                    <img src="images/mouse.svg" alt="middle mouse key"
+                         id="mouse-shortcut-icon" class="shortcut-icon"/>
+                </div>
+                <p class="shortcut-text">Close individual tab</p>
+            </li>
+        </ul>
+    </div>
+
+    <hr class="break-line">
+
+    <footer id="main-footer">
+        <p id="signature">By Jean-Luc Thumm</p>
+        <a href="https://github.com/jeanlucthumm/tab-view">
+            <img id="github-icon" src="images/github.png" alt="github"/>
+        </a>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,181 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
-   version="1.1"
-   id="svg4675"
-   sodipodi:docname="tabs-full.svg"
-   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
-  <defs
-     id="defs4669">
-    <marker
-       inkscape:stockid="Arrow1Lstart"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="marker1227"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         id="path1225"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.8) translate(12.5,0)" />
-    </marker>
-    <marker
-       inkscape:stockid="Arrow1Mstart"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="Arrow1Mstart"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         id="path945"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.4) translate(10,0)" />
-    </marker>
-    <marker
-       inkscape:stockid="Arrow1Lend"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="Arrow1Lend"
-       style="overflow:visible;"
-       inkscape:isstock="true">
-      <path
-         id="path942"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
-         transform="scale(0.8) rotate(180) translate(12.5,0)" />
-    </marker>
-    <marker
-       inkscape:stockid="Arrow1Lstart"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="Arrow1Lstart"
-       style="overflow:visible"
-       inkscape:isstock="true">
-      <path
-         id="path939"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.8) translate(12.5,0)" />
-    </marker>
-  </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="170.94936"
-     inkscape:cy="561.71675"
-     inkscape:document-units="mm"
-     inkscape:current-layer="g1567"
-     showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="878"
-     inkscape:window-x="0"
-     inkscape:window-y="3"
-     inkscape:window-maximized="0" />
-  <metadata
-     id="metadata4672">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="72.697311"
-       y="55.922886"
-       id="text1255"><tspan
-         sodipodi:role="line"
-         id="tspan1253"
-         x="72.697311"
-         y="65.455872"
-         style="stroke-width:0.26458332" /></text>
-    <g
-       id="g1567">
-      <g
-         transform="translate(-85.8737,52.378194)"
-         id="g3987">
-        <circle
-           r="19.279366"
-           cy="44.814285"
-           cx="33.14851"
-           id="circle3981"
-           style="fill:#04080f;fill-opacity:1;stroke:#04080f;stroke-width:0.35474032;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-        <g
-           id="g3985">
-          <circle
-             style="fill:#a1c6ea;fill-opacity:1;stroke:#a1c6ea;stroke-width:0.35474032;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             id="circle3983"
-             cx="31.671438"
-             cy="43.762123"
-             r="19.279364" />
-        </g>
-      </g>
-    </g>
-    <g
-       transform="matrix(0.26329509,0,0,0.26329509,-131.75356,56.00934)"
-       id="g4003">
-      <g
-         id="g3999"
-         transform="matrix(0.08917071,0,0,0.08917071,252.761,109.83141)">
-        <g
-           id="g3997"
-           transform="matrix(0.1,0,0,-0.1,0,466)">
-          <path
-             id="path3989"
-             d="m 1552.8,4064.3 c -78.5,-78.5 -70.8,-195.2 19.1,-264.1 23,-19.1 788.6,-23 3431.9,-24.9 h 3399.4 l 49.8,59.3 c 67,78.5 65.1,158.9 -5.8,229.7 l -55.5,55.5 H 5000 1608.3 Z"
-             inkscape:connector-curvature="0" />
-          <path
-             id="path3991"
-             d="m 1085.7,3413.5 c -122.5,-51.7 -149.3,-204.8 -49.8,-292.9 l 59.3,-53.6 H 4998 8900.8 l 59.3,49.8 c 76.6,63.2 82.3,170.4 13.4,250.7 l -45.9,53.6 -3902.8,3.8 c -2145.6,2 -3918,-3.8 -3939.1,-11.4 z"
-             inkscape:connector-curvature="0" />
-          <path
-             id="path3993"
-             d="m 500,2667 c -74.6,-74.6 -74.6,-153.1 0,-235.4 l 55.5,-63.2 H 5000 9444.5 l 55.5,63.2 c 74.7,82.3 74.7,160.8 0,235.4 l -55.5,55.5 H 5000 555.5 Z"
-             inkscape:connector-curvature="0" />
-          <path
-             id="path3995"
-             d="M 149.8,1955 100,1895.7 v -3292.2 -3292.2 l 55.5,-55.5 55.5,-55.5 h 4789 4789 l 55.5,55.5 55.5,55.5 v 3292.2 3292.2 l -49.8,59.3 -49.8,59.3 H 5000 199.5 Z m 9401.8,-3342 -5.7,-3058.7 H 5000 454.1 l -5.7,3058.7 -3.8,3056.8 H 5000 9555.5 Z"
-             inkscape:connector-curvature="0" />
-        </g>
-      </g>
-      <rect
-         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="rect4001"
-         width="81.157814"
-         height="54.532341"
-         x="256.81024"
-         y="136.49524" />
-    </g>
+<svg width="40.391mm" height="39.966mm" version="1.1" viewBox="0 0 40.390541 39.965633" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(73.659 -76.684)">
+  <text x="72.697311" y="55.922886" fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="72.697311" y="65.286652" stroke-width=".26458"/></text>
+  <g transform="translate(-85.874 52.378)">
+   <circle cx="33.149" cy="44.814" r="19.279" fill="#04080f" stroke="#04080f" stroke-width=".35474"/>
+   <circle cx="31.671" cy="43.762" r="19.279" fill="#a1c6ea" stroke="#a1c6ea" stroke-width=".35474"/>
   </g>
+  <g transform="matrix(.2633 0 0 .2633 -131.75 56.009)">
+   <g transform="matrix(.089171 0 0 .089171 252.76 109.83)">
+    <g transform="matrix(.1 0 0 -.1 0 466)">
+     <path d="m1552.8 4064.3c-78.5-78.5-70.8-195.2 19.1-264.1 23-19.1 788.6-23 3431.9-24.9h3399.4l49.8 59.3c67 78.5 65.1 158.9-5.8 229.7l-55.5 55.5h-6783.4z"/>
+     <path d="m1085.7 3413.5c-122.5-51.7-149.3-204.8-49.8-292.9l59.3-53.6h7805.6l59.3 49.8c76.6 63.2 82.3 170.4 13.4 250.7l-45.9 53.6-3902.8 3.8c-2145.6 2-3918-3.8-3939.1-11.4z"/>
+     <path d="m500 2667c-74.6-74.6-74.6-153.1 0-235.4l55.5-63.2h8889l55.5 63.2c74.7 82.3 74.7 160.8 0 235.4l-55.5 55.5h-8889z"/>
+     <path d="m149.8 1955-49.8-59.3v-6584.4l55.5-55.5 55.5-55.5h9578l55.5 55.5 55.5 55.5v6584.4l-49.8 59.3-49.8 59.3h-9600.9zm9401.8-3342-5.7-3058.7h-9091.8l-5.7 3058.7-3.8 3056.8h9110.9z"/>
+    </g>
+   </g>
+   <rect x="256.81" y="136.5" width="81.158" height="54.532" fill="#fff"/>
+  </g>
+ </g>
 </svg>
