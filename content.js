@@ -44,34 +44,43 @@ function setup_modal() {
 }
 
 function scan() {
-  close(() => {
+  close(true, () => {
     chrome.runtime.sendMessage('scan');
   });
 }
 
-function close(callback) {
-  let style = document.getElementById('tab-view-stylesheet');
-  let wrapper = document.getElementById('tab-view-content-wrapper');
+function close(fast, callback) {
   let container = document.getElementById('tab-view-modal-container');
 
   // Fade out
-  container.style.animation = 'fadeOut 0.3s';
-  container.addEventListener('animationend', () => {
-    if (style) style.remove();
-    if (wrapper) wrapper.remove();
-    document.body.classList.remove(
-      'tab-view-modal-open-disable-scroll-with-bar',
-      'tab-view-modal-open-disable-scroll-no-bar');
-    window.content_injected = false;
+  if (!fast) {
+    container.style.animation = 'fadeOut 0.3s';
+    container.addEventListener('animationend', () => {
+      _close(callback);
+    });
+  } else {
+    _close(callback);
+  }
+}
 
-    chrome.runtime.sendMessage('closed');
+function _close(callback) {
+  let style = document.getElementById('tab-view-stylesheet');
+  let wrapper = document.getElementById('tab-view-content-wrapper');
 
-    if (callback) callback();
-  });
+  if (style) style.remove();
+  if (wrapper) wrapper.remove();
+  document.body.classList.remove(
+    'tab-view-modal-open-disable-scroll-with-bar',
+    'tab-view-modal-open-disable-scroll-no-bar');
+  window.content_injected = false;
+
+  chrome.runtime.sendMessage('closed');
+
+  if (callback) callback();
 }
 
 function help() {
-  close(() => {
+  close(true, () => {
     chrome.runtime.sendMessage('help');
   });
 }
