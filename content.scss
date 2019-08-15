@@ -52,6 +52,14 @@ body.tab-view-modal-open-disable-scroll-no-bar {
       border-width: 2px;
     }
 
+    button {
+      padding: 0;
+      z-index: 2000000001;
+      outline: none;
+      border: none;
+      cursor: default;
+    }
+
     #tab-view-modal-close-button {
       background: url("delete-button.png");
       background-size: contain;
@@ -61,12 +69,6 @@ body.tab-view-modal-open-disable-scroll-no-bar {
       right: 7px;
       width: 29px;
       height: 29px;
-      padding: 0;
-      z-index: 2000000001;
-
-      outline: none;
-      border: none;
-      cursor: default;
     }
 
     #tab-view-modal-scan-button {
@@ -78,12 +80,17 @@ body.tab-view-modal-open-disable-scroll-no-bar {
       right: 8px;
       width: 26px;
       height: 22px;
-      padding: 0;
-      z-index: 2000000001;
+    }
 
-      outline: none;
-      border: none;
-      cursor: default;
+    #tab-view-modal-help-button {
+      background: url("images/help.svg");
+      background-size: contain;
+      position: absolute;
+
+      top: 87px;
+      right: 14px;;
+      width: 14px;
+      height: 22px;
     }
   }
 }
