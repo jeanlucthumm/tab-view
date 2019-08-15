@@ -5,7 +5,13 @@ chrome.runtime.onInstalled.addListener(() => {
       console.log("When setting initial sync storage: " +
         chrome.runtime.lastError.message);
     }
-  })
+  });
+});
+
+// Remove all thumbnails on start up just in case close tab event didn't
+// fire. The only thing in storage is thumbnails.
+chrome.runtime.onStartup.addListener(() => {
+  chrome.storage.local.clear();
 });
 
 chrome.tabs.onActivated.addListener(activeInfo => {
