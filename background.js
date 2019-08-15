@@ -66,10 +66,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   } else if (message === 'closed') {
     let key = genModalFlagKey(sender.tab.id);
     chrome.storage.local.remove(key);
+  } else if (message === 'help') {
+    onHelp();
   }
 
   sendResponse();
 });
+
+function onHelp() {
+  chrome.tabs.create({url: 'install.html'});
+}
 
 chrome.browserAction.onClicked.addListener((tab) => {
   inject();

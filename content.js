@@ -30,10 +30,9 @@ function setup() {
 }
 
 function setup_modal() {
-  let close_button = document.getElementById('tab-view-modal-close-button');
-  close_button.onclick = close;
-  let scan_button = document.getElementById('tab-view-modal-scan-button');
-  scan_button.onclick = scan;
+  document.getElementById('tab-view-modal-close-button').onclick = close;
+  document.getElementById('tab-view-modal-scan-button').onclick = scan;
+  document.getElementById('tab-view-modal-help-button').onclick = help;
 
 
   // Disable scrolling and prevent reflow only if scroll bar was already there
@@ -68,6 +67,12 @@ function close(callback) {
     chrome.runtime.sendMessage('closed');
 
     if (callback) callback();
+  });
+}
+
+function help() {
+  close(() => {
+    chrome.runtime.sendMessage('help');
   });
 }
 
