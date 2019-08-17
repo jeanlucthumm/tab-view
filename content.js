@@ -88,6 +88,15 @@ function help() {
 function onMessage(event) {
   if (event.data === 'close' && window.content_injected) {
     close();
+  } else if (event.data.cmd === 'tab_switch') {
+    let msg = {
+      cmd: 'tab_switch',
+      windowId: event.data.windowId,
+      tabs: event.data.tabs
+    };
+    close(true, () => {
+      chrome.runtime.sendMessage(msg);
+    })
   }
 }
 

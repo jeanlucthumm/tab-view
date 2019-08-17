@@ -74,6 +74,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     chrome.storage.local.remove(key);
   } else if (message === 'help') {
     onHelp();
+  } else if (message.cmd === 'tab_switch') {
+    chrome.tabs.highlight({
+      windowId: message.windowId,
+      tabs: message.tabs
+    });
   }
 
   sendResponse();
