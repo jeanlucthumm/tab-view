@@ -1,4 +1,4 @@
-#TabView
+# TabView
 
 TabView is a chrome extension that lets you visually and interactively browse
 your tabs.
