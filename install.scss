@@ -9,14 +9,12 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
 }
 
 #content {
   width: 545px;
-  //margin: 20px auto 0 auto;
+  margin: auto;
   padding: 57px;
-  align-self: center;
 
   background-color: #f6f9fd;
   box-shadow: 1px 1px 3px #5e5e5e;

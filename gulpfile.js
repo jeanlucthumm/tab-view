@@ -1,10 +1,36 @@
-const {src, dest} = require('gulp');
+const {src, dest, parallel} = require('gulp');
 const sass = require('gulp-sass');
+const clean = require('gulp-clean');
 
-function make_sass() {
+const out = './build';
+
+function css() {
   return src('*.scss')
     .pipe(sass.sync().on('error', sass.logError))
-    .pipe(dest('.'));
+    .pipe(dest(out));
 }
 
-exports.default = make_sass;
+function js() {
+  return src('*.js')
+    .pipe(dest(out));
+}
+
+function html() {
+  return src('*.html')
+    .pipe(dest(out));
+}
+
+function resources() {
+  return src(['./icon/**/*', './images/**/*', './manifest.json'],
+    {base: '.'})
+    .pipe(dest(out));
+}
+
+function cleanBuild() {
+  return src(out + '/**/*', {read: false})
+    .pipe(clean());
+}
+
+
+exports.default = parallel(css, js, html, resources);
+exports.clean = cleanBuild;

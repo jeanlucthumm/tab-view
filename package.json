@@ -9,6 +9,7 @@
   "author": "Jean-Luc Thumm <jeanlucthumm@gmail.com>",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
     "gulp-sass": "^4.0.2"
   }
 }

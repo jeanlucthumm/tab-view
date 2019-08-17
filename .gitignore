@@ -178,3 +178,4 @@ fabric.properties
 ### User additions ###
 *.css
 .DS_Store
+build/

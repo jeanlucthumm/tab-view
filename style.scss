@@ -1,7 +1,7 @@
 body {
   //background: #302F2C;
   background-size: contain;
-  background: url("back.jpg") no-repeat fixed;
+  background: url("images/back.jpg") no-repeat fixed;
 }
 
 .thumb-container {
@@ -43,7 +43,7 @@ body::-webkit-scrollbar {
 
 .close-button {
   position: absolute;
-  background: url("baseline-clear-24px.svg");
+  background: url("images/black-close-X.svg");
   background-size: contain;
   outline: none;
   border: none;
