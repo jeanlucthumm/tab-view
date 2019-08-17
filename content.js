@@ -30,9 +30,11 @@ function setup() {
 }
 
 function setupModal() {
-  document.getElementById('tab-view-modal-close-button').onclick = close;
   document.getElementById('tab-view-modal-scan-button').onclick = scan;
   document.getElementById('tab-view-modal-help-button').onclick = help;
+  document.getElementById('tab-view-modal-close-button').onclick = () => {
+    close(false);
+  };
 
 
   // Disable scrolling and prevent reflow only if scroll bar was already there
