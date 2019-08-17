@@ -20,12 +20,16 @@ chrome.tabs.onActivated.addListener(activeInfo => {
 
 // Captures the currently visible tab and saves to local storage. windowId
 // and tabId refer to the currently visible tab and must be known
-// beforehand. Callback is called immediately after the capture is taken
+// beforehand. Callback is called immediately after the capture is taken.
+// Returns true if the capture is taken, false otherwise.
 function captureThumbnail(windowId, tabId, callback) {
   // If flag is set then modal is open and we don't capture
   let key = genModalFlagKey(tabId);
   chrome.storage.local.get(key, items => {
-    if (items.hasOwnProperty(key)) return;
+    if (items.hasOwnProperty(key)) {
+      if (callback) callback();
+      return false;
+    }
 
     chrome.tabs.captureVisibleTab(
       {format: 'jpeg', quality: 70},
@@ -35,7 +39,7 @@ function captureThumbnail(windowId, tabId, callback) {
         });
         if (callback) callback();
       }
-    )
+    );
   });
 }
 
