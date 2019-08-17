@@ -1,11 +1,9 @@
+
+/// Event Handlers
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.clear();
-  chrome.storage.sync.set({"thumb_height": 256}, () => {
-    if (chrome.runtime.hasOwnProperty("lastError")) {
-      console.log("When setting initial sync storage: " +
-        chrome.runtime.lastError.message);
-    }
-  });
+  help();
 });
 
 // Remove all thumbnails on start up just in case close tab event didn't
@@ -14,14 +12,49 @@ chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.clear();
 });
 
+// If tab is navigated to, capture thumbnail
 chrome.tabs.onActivated.addListener(activeInfo => {
   captureThumbnail(activeInfo.windowId, activeInfo.tabId);
 });
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message === 'scan') {
+    let tab = sender.tab;
+
+    chrome.tabs.query({'windowId': tab.windowId}, winTabs => {
+      if (winTabs.length === 0) {
+        console.error("No tabs in window to scan");
+        return;
+      }
+      // Recursively go through all the tabs then reopen modal
+      // in the tab scan button was pressed on
+      highlightTab(winTabs, () => {
+        chrome.tabs.highlight({
+          windowId: tab.windowId,
+          tabs: [tab.index]
+        }, inject);
+      });
+    });
+  } else if (message === 'closed') {
+    let key = genModalFlagKey(sender.tab.id);
+    chrome.storage.local.remove(key);
+  } else if (message === 'help') {
+    help();
+  } else if (message.cmd === 'tab_switch') {
+    chrome.tabs.highlight({
+      windowId: message.windowId,
+      tabs: message.tabs
+    });
+  }
+
+  sendResponse();
+});
+
 // Captures the currently visible tab and saves to local storage. windowId
 // and tabId refer to the currently visible tab and must be known
-// beforehand. Callback is called immediately after the capture is taken.
-// Returns true if the capture is taken, false otherwise.
+// beforehand. Tab is not captured if there is a modal present, in which case
+// the function returns false, true otherwise. Callback is always called
+// regardless
 function captureThumbnail(windowId, tabId, callback) {
   // If flag is set then modal is open and we don't capture
   let key = genModalFlagKey(tabId);
@@ -43,6 +76,7 @@ function captureThumbnail(windowId, tabId, callback) {
   });
 }
 
+// If current tab updates, capture it again
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   chrome.windows.getCurrent(window => {
     if (tab.active && tab.windowId === window.id
@@ -52,51 +86,26 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   });
 });
 
+// If tab is closed, remove its thumbnail and modal flag
 chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
-  let key = genThumbDataKey(removeInfo.windowId, tabId);
-  chrome.storage.local.remove(key);
+  let thumb_key = genThumbDataKey(removeInfo.windowId, tabId);
+  let flag_key = genModalFlagKey(tabId);
+  chrome.storage.local.remove([thumb_key, flag_key]);
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message === 'scan') {
-    let tab = sender.tab;
-
-    chrome.tabs.query({'windowId': tab.windowId}, winTabs => {
-      if (winTabs.length === 0) {
-        console.error("No tabs in window to scan");
-        return;
-      }
-      highlightTab(winTabs, () => {
-        chrome.tabs.highlight({
-          windowId: tab.windowId,
-          tabs: [tab.index]
-        }, inject);
-      });
-    });
-  } else if (message === 'closed') {
-    let key = genModalFlagKey(sender.tab.id);
-    chrome.storage.local.remove(key);
-  } else if (message === 'help') {
-    onHelp();
-  } else if (message.cmd === 'tab_switch') {
-    chrome.tabs.highlight({
-      windowId: message.windowId,
-      tabs: message.tabs
-    });
-  }
-
-  sendResponse();
-});
-
-function onHelp() {
-  chrome.tabs.create({url: 'install.html'});
-}
-
+// Open modal on browser action
 chrome.browserAction.onClicked.addListener((tab) => {
   inject();
 });
 
+// Open the help page in a new tab
+function help() {
+  chrome.tabs.create({url: 'install.html'});
+}
+
+// Open the TabView modal in the current tab
 function inject() {
+  // Set flag to indicate modal is open
   chrome.tabs.query({active: true, currentWindow: true}, tabs => {
     if (tabs.length === 0) return;
     let key = genModalFlagKey(tabs[0].id);
@@ -108,6 +117,8 @@ function inject() {
   chrome.tabs.executeScript({file: 'content.js'});
 }
 
+// Highlights every tab in tabs recursively and takes a snapshot.
+// The callback is called after the last tab has been captured.
 function highlightTab(tabs, callback) {
   if (tabs.length === 0) {
     callback();

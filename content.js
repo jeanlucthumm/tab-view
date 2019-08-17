@@ -29,6 +29,8 @@ function setup() {
   window.addEventListener('message', onMessage, false);
 }
 
+// Registers event listeners and does some CSS magic after the modal
+// has been injected
 function setupModal() {
   document.getElementById('tab-view-modal-scan-button').onclick = scan;
   document.getElementById('tab-view-modal-help-button').onclick = help;
@@ -45,26 +47,32 @@ function setupModal() {
   }
 }
 
+// Called from scan button. Goes through all tabs and captures thumbnail
 function scan() {
   close(true, () => {
     chrome.runtime.sendMessage('scan');
   });
 }
 
+// Closes the modal. 'fast' is optional and if true will skip fade out
+// closing animation. 'callback' is optional and is called the moment
+// the modal has been removed from the DOM.
 function close(fast, callback) {
   let container = document.getElementById('tab-view-modal-container');
 
   // Fade out
-  if (!fast) {
+  if (fast === true) {
+    destroyModal(callback);
+  } else {
     container.style.animation = 'fadeOut 0.3s';
     container.addEventListener('animationend', () => {
       destroyModal(callback);
     });
-  } else {
-    destroyModal(callback);
   }
 }
 
+// Removes the modal from the DOM and calls the optional callback.
+// Prefer calling close() unless there's a good reason to call this.
 function destroyModal(callback) {
   let style = document.getElementById('tab-view-stylesheet');
   let wrapper = document.getElementById('tab-view-content-wrapper');
@@ -81,6 +89,7 @@ function destroyModal(callback) {
   if (callback) callback();
 }
 
+// Called from help button. Opens install page
 function help() {
   close(true, () => {
     chrome.runtime.sendMessage('help');
@@ -102,6 +111,8 @@ function onMessage(event) {
   }
 }
 
+// There is another event listener for the modal iframe doing
+// the same thing.
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Escape' && window.content_injected) {
     // Escape key
