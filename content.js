@@ -21,7 +21,7 @@ function setup() {
       .attr('src', chrome.runtime.getURL('popup.html'));
 
     // TODO the wrapper may not be on the DOM when this runs
-    setup_modal();
+    setupModal();
   });
   wrapper.appendTo($(document.body));
 
@@ -29,7 +29,7 @@ function setup() {
   window.addEventListener('message', onMessage, false);
 }
 
-function setup_modal() {
+function setupModal() {
   document.getElementById('tab-view-modal-close-button').onclick = close;
   document.getElementById('tab-view-modal-scan-button').onclick = scan;
   document.getElementById('tab-view-modal-help-button').onclick = help;
@@ -56,14 +56,14 @@ function close(fast, callback) {
   if (!fast) {
     container.style.animation = 'fadeOut 0.3s';
     container.addEventListener('animationend', () => {
-      _close(callback);
+      destroyModal(callback);
     });
   } else {
-    _close(callback);
+    destroyModal(callback);
   }
 }
 
-function _close(callback) {
+function destroyModal(callback) {
   let style = document.getElementById('tab-view-stylesheet');
   let wrapper = document.getElementById('tab-view-content-wrapper');
 
