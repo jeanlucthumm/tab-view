@@ -75,16 +75,18 @@ function destroyModal(callback) {
   let style = document.getElementById('tab-view-stylesheet');
   let wrapper = document.getElementById('tab-view-content-wrapper');
 
-  if (style) style.remove();
-  document.body.classList.remove(
-    'tab-view-modal-open-disable-scroll-with-bar',
-    'tab-view-modal-open-disable-scroll-no-bar');
-  window.content_injected = false;
   // Need to guarantee that the wrapper remove has been rendered
   // before declaring modal closed and calling callback
   window.requestAnimationFrame(() => {
     setTimeout(() => {
+
+      if (style) style.remove();
+      document.body.classList.remove(
+        'tab-view-modal-open-disable-scroll-with-bar',
+        'tab-view-modal-open-disable-scroll-no-bar');
       chrome.runtime.sendMessage('closed');
+      window.content_injected = false;
+
       if (callback) callback();
     })
   });

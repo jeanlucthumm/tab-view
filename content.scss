@@ -1,12 +1,15 @@
 // Reset
-#tab-view-content-wrapper #tab-view-iframe #tab-view-modal-container {
+#tab-view-content-wrapper * {
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
   font-size: 100%;
+  min-width: 0;
+  min-height: 0;
   vertical-align: baseline;
   background: transparent;
+  box-shadow: none;
 }
 
 // Prevent body from scrolling. Use when there is overflow in body
