@@ -110,7 +110,6 @@ function inject() {
     if (tabs.length === 0) return;
     let key = genModalFlagKey(tabs[0].id);
     chrome.storage.local.set({[key]: true});
-    console.log("set modal flag for key: " + key);
   });
   chrome.tabs.executeScript({file: 'jquery-3.4.1.min.js'});
   chrome.tabs.executeScript({file: 'common.js'});
