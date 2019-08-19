@@ -106,7 +106,7 @@ button {
 #close-button {
   background: url("images/delete-button.png");
   background-size: contain;
-  position: absolute;
+  position: fixed;
 
   top: 11px;
   right: 7px;
@@ -117,7 +117,7 @@ button {
 #scan-button {
   background: url("images/scan.svg");
   background-size: contain;
-  position: absolute;
+  position: fixed;
 
   top: 52px;
   right: 8px;
@@ -128,7 +128,7 @@ button {
 #help-button {
   background: url("images/help.svg");
   background-size: contain;
-  position: absolute;
+  position: fixed;
 
   top: 87px;
   right: 14px;;
