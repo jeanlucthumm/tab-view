@@ -1,21 +1,42 @@
-const container = document.getElementById('thumb-container');
-const template = document.getElementById('template');
+document.addEventListener('DOMContentLoaded', main);
 
-// Load all tabs in current window.
-chrome.tabs.query({"currentWindow": true}, winTabs => {
-  if (winTabs.length === 0) {
-    console.error("No tabs in current window");
-    return;
-  }
+function main() {
+  setup();
 
-  for (let tab of winTabs) {
-    loadThumbnail(tab);
-  }
-});
+  // Load all tabs in current window.
+  chrome.tabs.query({"currentWindow": true}, winTabs => {
+    if (winTabs.length === 0) {
+      console.error("No tabs in current window");
+      return;
+    }
+
+    let container = document.getElementById('thumb-container');
+    let template = document.getElementById('template');
+
+    for (let tab of winTabs) {
+      loadThumbnail(tab, template, container);
+    }
+  });
+
+}
+
+function setup() {
+  document.getElementById('close-button').onclick = () => {
+    window.parent.postMessage('close', '*');
+  };
+  document.getElementById('scan-button').onclick = () => {
+    window.parent.postMessage('scan', '*');
+  };
+  document.getElementById('help-button').onclick = () => {
+    window.parent.postMessage('help', '*');
+  };
+}
+
 
 // Loads all thumbnails for tabs given by winTabs.
-// winTabs should be the results of a call to chrome.tabs.query.
-function loadThumbnail(tab) {
+// winTabs should be the results of a call to chrome.tabs.query. Template will
+// be cloned and populated and then appended to container.
+function loadThumbnail(tab, template, container) {
   let key = genThumbDataKey(tab.windowId, tab.id);
   chrome.storage.local.get([key], items => {
     let thumbnail = template.cloneNode(true);

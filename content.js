@@ -27,16 +27,9 @@ function setup() {
   });
 }
 
-// Registers event listeners and does some CSS magic after the modal
+// Does some CSS magic after the modal
 // has been injected
 function setupModal() {
-  document.getElementById('tab-view-modal-scan-button').onclick = scan;
-  document.getElementById('tab-view-modal-help-button').onclick = help;
-  document.getElementById('tab-view-modal-close-button').onclick = () => {
-    close(false);
-  };
-
-
   // Disable scrolling and prevent reflow only if scroll bar was already there
   if (document.body.scrollHeight > window.innerHeight) {
     document.body.classList.add('tab-view-modal-open-disable-scroll-with-bar');
@@ -45,10 +38,17 @@ function setupModal() {
   }
 }
 
-// Called from scan button. Goes through all tabs and captures thumbnail
+// Goes through all tabs and captures thumbnail
 function scan() {
   close(true, () => {
     chrome.runtime.sendMessage('scan');
+  });
+}
+
+// Opens install page
+function help() {
+  close(true, () => {
+    chrome.runtime.sendMessage('help');
   });
 }
 
@@ -93,16 +93,13 @@ function destroyModal(callback) {
   if (wrapper) wrapper.remove();
 }
 
-// Called from help button. Opens install page
-function help() {
-  close(true, () => {
-    chrome.runtime.sendMessage('help');
-  });
-}
-
 function onMessage(event) {
   if (event.data === 'close' && window.content_injected) {
     close();
+  } else if (event.data === 'scan') {
+    scan();
+  } else if (event.data === 'help') {
+    help();
   } else if (event.data.cmd === 'tab_switch') {
     let msg = {
       cmd: 'tab_switch',
@@ -111,7 +108,7 @@ function onMessage(event) {
     };
     close(true, () => {
       chrome.runtime.sendMessage(msg);
-    })
+    });
   }
 }
 

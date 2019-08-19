@@ -95,6 +95,47 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+button {
+  padding: 0;
+  z-index: 2000000001;
+  outline: none;
+  border: none;
+  cursor: default;
+}
+
+#close-button {
+  background: url("images/delete-button.png");
+  background-size: contain;
+  position: absolute;
+
+  top: 11px;
+  right: 7px;
+  width: 29px;
+  height: 29px;
+}
+
+#scan-button {
+  background: url("images/scan.svg");
+  background-size: contain;
+  position: absolute;
+
+  top: 52px;
+  right: 8px;
+  width: 26px;
+  height: 22px;
+}
+
+#help-button {
+  background: url("images/help.svg");
+  background-size: contain;
+  position: absolute;
+
+  top: 87px;
+  right: 14px;;
+  width: 14px;
+  height: 22px;
+}
+
 $tWidth: 324px; // width of one thumbnail
 $tRat: 1.05; // max ratio of page to content
 
