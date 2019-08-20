@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="420" height="280" version="1.1" viewBox="0 0 111.12 74.083" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(0 -222.92)">
+  <rect x="-8.6736e-19" y="222.92" width="111.12" height="74.083" fill="#fef5e6"/>
+  <g transform="matrix(.2821 0 0 .2821 -40.91 156.67)">
+   <g stroke="#000">
+    <path d="m191.01 302.99c-0.0176 0-0.0215 0.0228-0.0316 0.0419l-5.1904 9.8506h-4.1766c-2.8153 0-5.0816 3.0037-5.0816 6.735v103.63c0 3.7313 2.2663 6.7355 5.0816 6.7355h126.02c2.8153 0 5.082-3.0042 5.082-6.7355v-103.63c0-3.7313-2.2667-6.735-5.082-6.735h-80.276l-4.7911-9.8506c-0.01-0.0196-0.014-0.0419-0.0316-0.0419z" fill="#04080f" stroke-width=".22143"/>
+    <rect x="195.89" y="329.43" width="43.951" height="36.786" ry="4.6772" stroke-width=".23981"/>
+    <rect id="rect4603" x="193.2" y="326.4" width="43.951" height="36.786" ry="4.6772" fill="#fff" stroke="#000" stroke-width=".23981"/>
+   </g>
+   <text transform="scale(.98755 1.0126)" x="205.91389" y="350.79636" fill="#000000" font-family="'Brush Script MT'" font-size="34.022px" font-style="italic" letter-spacing="0px" stroke-width=".45566" word-spacing="0px" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="205.91389" y="350.79636" font-family="'Brush Script MT'" font-size="34.022px" font-style="italic" stroke-width=".45566" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal">T</tspan></text>
+   <rect x="253" y="381.59" width="43.951" height="36.786" ry="4.6772" stroke="#000" stroke-width=".23981"/>
+   <use id="use4605" transform="translate(57.317 52.016)" width="100%" height="100%" xlink:href="#rect4603"/>
+   <text transform="scale(.9821 1.0182)" x="270.77899" y="399.51703" fill="#04080f" font-family="'Brush Script MT'" font-size="33.835px" font-style="italic" letter-spacing="0px" stroke-width=".45314" word-spacing="0px" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="270.77899" y="399.51703" fill="#04080f" font-family="'Brush Script MT'" font-size="33.835px" font-style="italic" stroke-width=".45314" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal">V</tspan></text>
+   <rect x="253" y="329.43" width="43.951" height="36.786" ry="4.6772" stroke="#000" stroke-width=".23981"/>
+   <use transform="translate(57.317 -52.016)" width="100%" height="100%" xlink:href="#use4607"/>
+   <ellipse cx="272.5" cy="344.8" rx="8.9361" ry="8.9238" fill="#2b4162" stroke="#000" stroke-width=".76584"/>
+   <rect x="195.89" y="381.59" width="43.951" height="36.786" ry="4.6772" stroke="#000" stroke-width=".23981"/>
+   <use id="use4607" transform="translate(-57.317)" width="100%" height="100%" xlink:href="#use4605"/>
+   <ellipse cx="215.18" cy="396.81" rx="8.9271" ry="9.1447" fill="#2b4162" stroke="#000" stroke-width=".78467"/>
+  </g>
+  <text x="57.809376" y="254.50912" fill="#000000" font-family="'Brush Script MT'" font-size="19.577px" font-style="italic" letter-spacing="0px" stroke-width=".48942" word-spacing="0px" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;line-height:1.25" xml:space="preserve"><tspan x="57.809376" y="254.50912" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Browse</tspan><tspan x="57.809376" y="278.98035" style="font-feature-settings:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal">Better</tspan></text>
+  <rect x=".96833" y="223.88" width="109.19" height="72.147" fill="none" stroke="#000" stroke-width="1.9367"/>
+ </g>
+</svg>
