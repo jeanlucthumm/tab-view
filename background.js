@@ -1,4 +1,3 @@
-
 /// Event Handlers
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -102,7 +101,7 @@ chrome.tabs.onDetached.addListener((tabId, detachInfo) => {
 });
 
 // Recapture the attached tab since it most likely changed sizes
-chrome.tabs.onAttached.addListener((tabId, attachInfo) =>{
+chrome.tabs.onAttached.addListener((tabId, attachInfo) => {
   // Ensure that the newly attached tab and its window are focused
   chrome.windows.get(attachInfo.newWindowId, window => {
     if (!window.focused) return;
@@ -131,9 +130,29 @@ function inject() {
     let key = genModalFlagKey(tabs[0].id);
     chrome.storage.local.set({[key]: true});
   });
-  chrome.tabs.executeScript({file: 'jquery-3.4.1.min.js'});
-  chrome.tabs.executeScript({file: 'common.js'});
-  chrome.tabs.executeScript({file: 'content.js'});
+  chrome.tabs.executeScript({file: 'jquery-3.4.1.min.js'}, () => {
+    if (chrome.runtime.lastError) {
+      alertFailedInject();
+      return;
+    }
+    chrome.tabs.executeScript({file: 'common.js'}, () => {
+      let err = chrome.runtime.lastError;
+      if (err) console.error('Failed to inject common.js: ' + err)
+      chrome.tabs.executeScript({file: 'content.js'}, () => {
+        let err = chrome.runtime.lastError;
+        if (err) console.error('Failed to inject content.js: ' + err)
+      });
+    });
+  });
+}
+
+// Helper function to display alert box explaning why modal could not be
+// injected in the current page
+function alertFailedInject() {
+  let msg = "Could not open TabView in current page\n\n" +
+    "Because of Chrome permissions, it cannot open on chrome:// pages or " +
+    "the new tab page";
+  alert(msg);
 }
 
 // Highlights every tab in tabs recursively and takes a snapshot.
