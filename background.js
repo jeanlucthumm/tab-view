@@ -86,11 +86,31 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   });
 });
 
-// If tab is closed, remove its thumbnail and modal flag
-chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
-  let thumb_key = genThumbDataKey(removeInfo.windowId, tabId);
+// Remove a tab's thumbnail and modal flag from storage
+function removeTab(windowId, tabId) {
+  let thumb_key = genThumbDataKey(windowId, tabId);
   let flag_key = genModalFlagKey(tabId);
   chrome.storage.local.remove([thumb_key, flag_key]);
+}
+
+// If tab is closed or detached, remove it from storage
+chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
+  removeTab(removeInfo.windowId, tabId);
+});
+chrome.tabs.onDetached.addListener((tabId, detachInfo) => {
+  removeTab(detachInfo.oldWindowId, tabId);
+});
+
+// Recapture the attached tab since it most likely changed sizes
+chrome.tabs.onAttached.addListener((tabId, attachInfo) =>{
+  // Ensure that the newly attached tab and its window are focused
+  chrome.windows.get(attachInfo.newWindowId, window => {
+    if (!window.focused) return;
+    chrome.tabs.get(tabId, tab => {
+      if (!tab.active) return;
+      captureThumbnail(window.id, tab.id);
+    })
+  });
 });
 
 // Open modal on browser action
