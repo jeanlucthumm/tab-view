@@ -88,6 +88,7 @@ function destroyModal(callback) {
       window.content_injected = false;
 
       if (callback) callback();
+      window.removeEventListener('message', onMessage);
     })
   });
   if (wrapper) wrapper.remove();
