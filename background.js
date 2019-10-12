@@ -68,7 +68,7 @@ function captureThumbnail(windowId, tabId, callback) {
       {format: 'jpeg', quality: 70},
       dataUrl => {
         if (chrome.runtime.lastError) {
-          if (callback) callback;
+          if (callback) callback();
           return;
         }
         let key = genThumbDataKey(windowId, tabId);
