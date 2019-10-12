@@ -66,6 +66,7 @@ function captureThumbnail(windowId, tabId, callback) {
     chrome.tabs.captureVisibleTab(
       {format: 'jpeg', quality: 70},
       dataUrl => {
+        if (chrome.runtime.lastError) return; // probs bad permissions on page
         let key = genThumbDataKey(windowId, tabId);
         chrome.storage.local.set({[key]: dataUrl}, () => {
         });
