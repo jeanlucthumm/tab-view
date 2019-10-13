@@ -1,6 +1,6 @@
 {
   "name": "TabView",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get a visual and interactive overview of all your tabs",
   "permissions": [
     "<all_urls>",
