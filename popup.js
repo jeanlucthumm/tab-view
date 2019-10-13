@@ -54,8 +54,6 @@ function loadThumbnail(tab, template, container, thumbList) {
 
     // Picture
     let pic = thumbnail.getElementsByClassName('pic')[0];
-    pic.setAttribute('window', tab.windowId);
-    pic.setAttribute('index', tab.index);
     pic.setAttribute('tabId', tab.id);
     pic.addEventListener('click', pictureClick);
     pic.addEventListener('auxclick', pictureCloseClick);
@@ -126,7 +124,6 @@ function positionThumbnails(container, thumbList) {
   if (activeThumb) {
     let rect = activeThumb.getBoundingClientRect();
     let pos = rect.y + rect.height / 2;
-    console.log("SCrolling to " + toString(pos - window.innerHeight / 2));
     window.scrollTo(0, pos - window.innerHeight / 2);
   }
 }
@@ -135,10 +132,11 @@ function positionThumbnails(container, thumbList) {
 // script to delete us from the DOM. The content script will then pass on the
 // message to switch tabs to the background script.
 function pictureClick() {
-  let window_num = parseInt(this.getAttribute('window'));
-  let index = parseInt(this.getAttribute('index'));
-  let msg = {cmd: 'tab_switch', windowId: window_num, tabs: [index]};
-  window.parent.postMessage(msg, '*');
+  let tabId = parseInt(this.getAttribute('tabId'));
+  chrome.tabs.get(tabId, tab => {
+    let msg = {cmd: 'tab_switch', windowId: tab.windowId, tabs: [tab.index]};
+    window.parent.postMessage(msg, '*');
+  });
 }
 
 // Event listener for middle mouse button on image to close tab
