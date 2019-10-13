@@ -13,8 +13,15 @@ function main() {
     let container = document.getElementById('thumb-container');
     let template = document.getElementById('template');
 
+    // List of all loaded thumbnails by position. Allows us to have access to
+    // all thumbnails by position and to check if all are loaded
+    let thumbList = [];
+    for(let i = 0; i < winTabs.length; i++) {
+      thumbList.push(false);
+    }
+
     for (let tab of winTabs) {
-      loadThumbnail(tab, template, container);
+      loadThumbnail(tab, template, container, thumbList);
     }
   });
 
@@ -32,16 +39,16 @@ function setup() {
   };
 }
 
-
 // Loads all thumbnails for tabs given by winTabs.
 // winTabs should be the results of a call to chrome.tabs.query. Template will
 // be cloned and populated and then appended to container.
-function loadThumbnail(tab, template, container) {
+function loadThumbnail(tab, template, container, thumbList) {
   let key = genThumbDataKey(tab.windowId, tab.id);
   chrome.storage.local.get([key], items => {
     let thumbnail = template.cloneNode(true);
     thumbnail.setAttribute('id', 'thumb' + key);
-    container.appendChild(thumbnail);
+    if (tab.active) thumbnail.setAttribute('active', true);
+    thumbList[tab.index] = thumbnail;
 
     let hasThumbnail = items.hasOwnProperty(key);
 
@@ -93,7 +100,35 @@ function loadThumbnail(tab, template, container) {
     let close_button = thumbnail.getElementsByClassName('close-button')[0];
     close_button.setAttribute('tabId', tab.id);
     close_button.addEventListener('click', closeClick);
+
+    // Check if we were the last thumbnail to load so that we can start
+    // positioning
+    let last = true;
+    for (entry of thumbList) {
+      if (entry === false) last = false;
+    }
+    if (last) {
+      positionThumbnails(container, thumbList);
+    }
   })
+}
+
+function positionThumbnails(container, thumbList) {
+  let activeThumb = undefined;
+  for (thumb of thumbList) {
+    container.appendChild(thumb);
+    if (thumb.hasAttribute('active')) {
+      activeThumb = thumb;
+    }
+  }
+
+  // Scroll to active thumbnail
+  if (activeThumb) {
+    let rect = activeThumb.getBoundingClientRect();
+    let pos = rect.y + rect.height / 2;
+    console.log("SCrolling to " + toString(pos - window.innerHeight / 2));
+    window.scrollTo(0, pos - window.innerHeight / 2);
+  }
 }
 
 // Navigate to the tab whose thumbnail was clicked. First notify the content
