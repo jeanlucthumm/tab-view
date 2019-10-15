@@ -154,9 +154,11 @@ function inject() {
 // Helper function to display alert box explaning why modal could not be
 // injected in the current page
 function alertFailedInject() {
-  let msg = "Could not open TabView in current page\n\n" +
-    "Because of Chrome permissions, it cannot open on chrome:// pages or " +
-    "the new tab page";
+  let msg = "Unfortunately Chrome doesn't let extensions mess with " +
+    "internal pages so we couldn't open TabView here. Try it in any " +
+    "other tab that's not the new tab page, TabView's help page, the " +
+    "extension settings page, or any other Chrome related pages. \n\n" +
+    "If you have ideas on how to get around this, do contact the dev!"
   alert(msg);
 }
 
