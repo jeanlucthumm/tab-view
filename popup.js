@@ -101,6 +101,8 @@ function setup() {
   document.getElementById('help-button').onclick = () => {
     window.parent.postMessage('help', '*');
   };
+
+  window.parent.postMessage('done', '*');
 }
 
 // Loads all thumbnails for tabs given by winTabs.

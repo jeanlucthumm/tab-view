@@ -101,6 +101,11 @@ function onMessage(event) {
     scan();
   } else if (event.data === 'help') {
     help();
+  } else if (event.data === 'done') {
+    // Focus the iframe otherwise there are no keyboard shortcuts
+    let frame = document.getElementById('tab-view-iframe');
+    if (frame === null) return;
+    frame.focus();
   } else if (event.data.cmd === 'tab_switch') {
     let msg = {
       cmd: 'tab_switch',
