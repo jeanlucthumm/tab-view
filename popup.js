@@ -1,5 +1,72 @@
 document.addEventListener('DOMContentLoaded', main);
 
+class ThumbnailState {
+  constructor() {
+    // Which thumb is currently highlighted. Default is none
+    this.index = -1;
+    // List of thumb DOM elements
+    this.tList = [];
+  }
+
+  // Empty the list and insert 'size' number of boolean value 'false'
+  emptyList(size) {
+    this.tList = [];
+    for (let i = 0; i < size; i++) {
+      this.tList.push(false);
+    }
+  }
+
+  // True if all thumbnails have been created, i.e. no entries in the list
+  // are false
+  get loaded() {
+    let t = true;
+    for (let entry of this.tList) {
+      if (entry === false) t = false;
+    }
+    return t;
+  }
+
+  get highlightedTab() {
+    if (this.index === -1) return null;
+    return this.tList[this.index]
+  }
+
+  reset() {
+    this.index = -1;
+    this.tList = [];
+  }
+
+  // Highlight functions apply styling iteratively to suggest that a thumb has
+  // been selected
+  highlightNext() {
+    // Un-highlight previous thumb
+    if (this.index !== -1) {
+      let prev = this.tList[this.index];
+      prev.classList.remove('highlight-thumb');
+    }
+    this.index = (this.index + 1) % this.tList.length;
+    let thumb = this.tList[this.index];
+    thumb.classList.add('highlight-thumb');
+  }
+
+  highlightPrev() {
+    // Un-highlight previous thumb
+    if (this.index !== -1) {
+      let prev = this.tList[this.index];
+      prev.classList.remove('highlight-thumb');
+    }
+    if (this.index === 0) {
+      this.index = this.tList.length - 1;
+    } else {
+      this.index--;
+    }
+    let thumb = this.tList[this.index];
+    thumb.classList.add('highlight-thumb');
+  }
+}
+
+const tState = new ThumbnailState();
+
 function main() {
   setup();
 
@@ -13,15 +80,12 @@ function main() {
     let container = document.getElementById('thumb-container');
     let template = document.getElementById('template');
 
-    // List of all loaded thumbnails by position. Allows us to have access to
-    // all thumbnails by position and to check if all are loaded
-    let thumbList = [];
-    for(let i = 0; i < winTabs.length; i++) {
-      thumbList.push(false);
-    }
+    // Update state to reflect number of tabs
+    tState.reset();
+    tState.emptyList(winTabs.length);
 
     for (let tab of winTabs) {
-      loadThumbnail(tab, template, container, thumbList);
+      loadThumbnail(tab, template, container, tState);
     }
   });
 
@@ -42,13 +106,14 @@ function setup() {
 // Loads all thumbnails for tabs given by winTabs.
 // winTabs should be the results of a call to chrome.tabs.query. Template will
 // be cloned and populated and then appended to container.
-function loadThumbnail(tab, template, container, thumbList) {
+function loadThumbnail(tab, template, container, tState) {
   let key = genThumbDataKey(tab.windowId, tab.id);
   chrome.storage.local.get([key], items => {
     let thumbnail = template.cloneNode(true);
     thumbnail.setAttribute('id', 'thumb' + key);
+    thumbnail.setAttribute('tabId', tab.id);
     if (tab.active) thumbnail.setAttribute('active', true);
-    thumbList[tab.index] = thumbnail;
+    tState.tList[tab.index] = thumbnail;
 
     let hasThumbnail = items.hasOwnProperty(key);
 
@@ -101,12 +166,8 @@ function loadThumbnail(tab, template, container, thumbList) {
 
     // Check if we were the last thumbnail to load so that we can start
     // positioning
-    let last = true;
-    for (entry of thumbList) {
-      if (entry === false) last = false;
-    }
-    if (last) {
-      positionThumbnails(container, thumbList);
+    if (tState.loaded) {
+      positionThumbnails(container, tState.tList);
     }
   })
 }
@@ -156,8 +217,16 @@ function closeClick() {
 }
 
 // Same event listener exists in content script.
-document.addEventListener('keydown', ev => {
+window.onkeydown = ev => {
   if (ev.key === 'Escape') {
     window.parent.postMessage('close', '*');
+  } else if (ev.key === 'Tab') {
+    if (ev.shiftKey) tState.highlightPrev();
+    else tState.highlightNext();
+    return false;
+  } else if (ev.key === ' ') {
+    let thumb = tState.highlightedTab;
+    if (thumb === null) return false;
+    pictureClick.call(thumb);
   }
-});
+};

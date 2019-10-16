@@ -91,6 +91,10 @@ body::-webkit-scrollbar {
   overflow: hidden;
 }
 
+.highlight-thumb {
+  transform: scale(1.1);
+}
+
 #template {
   display: none;
 }
