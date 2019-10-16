@@ -169,17 +169,19 @@ function loadThumbnail(tab, template, container, tState) {
     // Check if we were the last thumbnail to load so that we can start
     // positioning
     if (tState.loaded) {
-      positionThumbnails(container, tState.tList);
+      positionThumbnails(container, tState);
     }
   })
 }
 
-function positionThumbnails(container, thumbList) {
+function positionThumbnails(container, tState) {
   let activeThumb = undefined;
-  for (thumb of thumbList) {
+  for (let i = 0; i < tState.tList.length; i++) {
+    let thumb = tState.tList[i];
     container.appendChild(thumb);
     if (thumb.hasAttribute('active')) {
       activeThumb = thumb;
+      tState.index = i; // set highlighted to current tab
     }
   }
 
