@@ -8,13 +8,6 @@ class ThumbnailState {
     this.tList = [];
   }
 
-  // Empty the list and insert 'size' number of boolean value 'false'
-  emptyList(size) {
-    this.tList = [];
-    for (let i = 0; i < size; i++) {
-      this.tList.push(false);
-    }
-  }
 
   // True if all thumbnails have been created, i.e. no entries in the list
   // are false
@@ -26,14 +19,25 @@ class ThumbnailState {
     return t;
   }
 
-  get highlightedTab() {
+  // Highlighted thumb refers to the one selected by tabbing through,
+  // not the currently active thumbnail, i.e. the one representing active tab
+  get highlighted() {
     if (this.index === -1) return null;
     return this.tList[this.index]
   }
 
+  // Since this is a singleton, we offer reset function
   reset() {
     this.index = -1;
     this.tList = [];
+  }
+
+  // Empty the list and insert 'size' number of boolean value 'false'
+  emptyList(size) {
+    this.tList = [];
+    for (let i = 0; i < size; i++) {
+      this.tList.push(false);
+    }
   }
 
   // Highlight functions apply styling iteratively to suggest that a thumb has
@@ -62,6 +66,28 @@ class ThumbnailState {
     }
     let thumb = this.tList[this.index];
     thumb.classList.add('highlight-thumb');
+  }
+
+  // Scroll the modal to vertically center the thumb at given index. For thumbs
+  // on the edges, scroll only as far as window allows. if 'fast' is true
+  // the scroll happens instantaneously, smoothly otherwise.
+  scrollTo(index, fast = false) {
+    if (index < 0 || index >= this.tList.length) {
+      return false;
+    }
+    let thumb = this.tList[this.index];
+    let rect = thumb.getBoundingClientRect();
+    let mid = window.innerHeight / 2;
+    let delta = (rect.y + rect.height / 2) - mid;
+    if (fast) {
+      window.scrollBy(0, Math.abs(delta));
+    } else {
+      window.scrollBy({
+        top: Math.round(delta),
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 }
 
@@ -187,9 +213,7 @@ function positionThumbnails(container, tState) {
 
   // Scroll to active thumbnail
   if (activeThumb) {
-    let rect = activeThumb.getBoundingClientRect();
-    let pos = rect.y + rect.height / 2;
-    window.scrollTo(0, pos - window.innerHeight / 2);
+    tState.scrollTo(tState.index, true);
   }
 }
 
@@ -220,16 +244,16 @@ function closeClick() {
   this.closest('.thumb').remove();
 }
 
-// Same event listener exists in content script.
 window.onkeydown = ev => {
   if (ev.key === 'Escape') {
     window.parent.postMessage('close', '*');
   } else if (ev.key === 'Tab') {
     if (ev.shiftKey) tState.highlightPrev();
     else tState.highlightNext();
+    tState.scrollTo(tState.index);
     return false;
   } else if (ev.key === ' ') {
-    let thumb = tState.highlightedTab;
+    let thumb = tState.highlighted;
     if (thumb === null) return false;
     pictureClick.call(thumb);
   }
