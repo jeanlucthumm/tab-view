@@ -102,19 +102,29 @@ function main() {
       console.error("No tabs in current window");
       return;
     }
+    // Do not display any backup tabs
+    chrome.storage.local.get("backup_id", items => {
+      let container = document.getElementById('thumb-container');
+      let template = document.getElementById('template');
 
-    let container = document.getElementById('thumb-container');
-    let template = document.getElementById('template');
 
-    // Update state to reflect number of tabs
-    tState.reset();
-    tState.emptyList(winTabs.length);
+      // Update state to reflect number of tabs
+      tState.reset();
+      if (items.hasOwnProperty("backup_id")) {
+        tState.emptyList(winTabs.length - 1);
+      } else {
+        tState.emptyList(winTabs.length);
+      }
 
-    for (let tab of winTabs) {
-      loadThumbnail(tab, template, container, tState);
-    }
+      for (let tab of winTabs) {
+        if (items.hasOwnProperty("backup_id") && tab.id === items.backup_id) {
+          tState.index = 0;
+          continue;
+        }
+        loadThumbnail(tab, template, container, tState);
+      }
+    });
   });
-
 }
 
 function setup() {

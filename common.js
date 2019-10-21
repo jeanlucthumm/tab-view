@@ -8,3 +8,14 @@ function genThumbDataKey(windowId, tabId) {
 function genModalFlagKey(tabId) {
   return "mo#" + tabId;
 }
+
+// Error reporting utility. 'msg' is prepended to the error message and printed
+// to console, if 'error' is defined. Returns true in that case, and false
+// otherwise.
+function err(msg, error) {
+  if (error) {
+    console.error(msg + ": " + error);
+    return true;
+  }
+  return false;
+}

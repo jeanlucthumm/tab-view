@@ -44,6 +44,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       windowId: message.windowId,
       tabs: message.tabs
     });
+
+    // Close if backup tab
+    chrome.storage.local.get("backup_id", items => {
+      if (!items.hasOwnProperty("backup_id")) return;
+      chrome.tabs.remove(items.backup_id);
+      chrome.storage.local.remove("backup_id", () => {
+        err("remove backup id", chrome.runtime.lastError);
+      });
+    });
   }
 
   sendResponse();
@@ -127,6 +136,12 @@ function help() {
   chrome.tabs.create({url: 'install.html'});
 }
 
+// Displayed the first time the backup_tab page is opened
+const failedInjectMessage =
+  "TabView DOES NOT usually open in a new tab! This happens on " +
+  "a few specific pages including the one that you were on. " +
+  "Check out the help page for more info.";
+
 // Open the TabView modal in the current tab
 function inject() {
   // Set flag to indicate modal is open
@@ -137,7 +152,7 @@ function inject() {
   });
   chrome.tabs.executeScript({file: 'jquery-3.4.1.min.js'}, () => {
     if (chrome.runtime.lastError) {
-      alertFailedInject();
+      openBackupTab();
       return;
     }
     chrome.tabs.executeScript({file: 'common.js'}, () => {
@@ -151,15 +166,32 @@ function inject() {
   });
 }
 
-// Helper function to display alert box explaning why modal could not be
-// injected in the current page
-function alertFailedInject() {
-  let msg = "Unfortunately Chrome doesn't let extensions mess with " +
-    "internal pages so we couldn't open TabView here. Try it in any " +
-    "other tab that's not the new tab page, TabView's help page, the " +
-    "extension settings page, or any other Chrome related pages. \n\n" +
-    "If you have ideas on how to get around this, do contact the dev!"
-  alert(msg);
+// Opens the fallback tab which provides a page TabView is open in. This
+// happens on pages where the content script cannot be injected.
+function openBackupTab() {
+  chrome.tabs.create({
+    url: 'backup_tab.html',
+    active: true
+  }, (tab) => {
+    if (err("create backup tab", chrome.runtime.lastError)) return;
+
+    // Only display alert once
+    chrome.storage.local.get("backup_alerted", items => {
+      if (err("get backup alerted key", chrome.runtime.lastError)) return;
+      if (items.hasOwnProperty("backup_alerted")) return;
+
+      alert(failedInjectMessage);
+      chrome.storage.local.set({"backup_alerted": true}, () => {
+        err("set backup alerted key", chrome.runtime.lastError);
+      });
+    });
+
+    // Store the tab ID so we recognize it and close it when the user selects
+    // a thumb
+    chrome.storage.local.set({"backup_id": tab.id}, () => {
+      err("set backup tab id", chrome.runtime.lastError);
+    });
+  });
 }
 
 // Highlights every tab in tabs recursively and takes a snapshot.
