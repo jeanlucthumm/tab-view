@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="40.391mm" height="39.966mm" version="1.1" viewBox="0 0 40.391 39.966" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-78.755 -109.86)">
+  <text x="72.697311" y="55.922886" fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="72.697311" y="65.286652" stroke-width=".26458"/></text>
+  <circle cx="99.689" cy="130.37" r="19.279" fill="#04080f" stroke="#04080f" stroke-width=".35474"/>
+  <g transform="translate(66.54 85.555)">
+   <circle cx="31.671" cy="43.762" r="19.279" fill="#a1c6ea" stroke="#a1c6ea" stroke-width=".35474"/>
+  </g>
+  <g transform="matrix(1.0878 0 0 1.0878 -36.44 -53.824)">
+   <rect x="120.06" y="161.96" width="7.3275" height="13.708" ry="3.762" fill="#fff" stroke="#fff" stroke-width=".21089"/>
+   <g transform="matrix(.046747 0 0 .046747 111.82 154.93)">
+    <path d="m507.49 426.07-224.63-372.53c-5.677-9.415-15.87-15.172-26.865-15.172s-21.188 5.756-26.865 15.172l-224.63 372.53c-5.842 9.689-6.015 21.774-0.451 31.625 5.564 9.852 16.001 15.944 27.315 15.944h449.26c11.314 0 21.751-6.093 27.315-15.944 5.564-9.852 5.392-21.936-0.45-31.625zm-251.33-258.84c12.901 0 23.817 7.278 23.817 20.178 0 39.363-4.631 95.929-4.631 135.29 0 10.255-11.247 14.554-19.186 14.554-10.584 0-19.516-4.3-19.516-14.554 0-39.363-4.63-95.929-4.63-135.29 0-12.9 10.584-20.178 24.146-20.178zm0.331 243.79c-14.554 0-25.471-11.908-25.471-25.47 0-13.893 10.916-25.47 25.471-25.47 13.562 0 25.14 11.577 25.14 25.47 0 13.562-11.578 25.47-25.14 25.47z"/>
+   </g>
+  </g>
+ </g>
+</svg>
