@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>TabView Help</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+        rel="stylesheet">
   <link href="install.css" rel="stylesheet">
 </head>
 <body>
@@ -15,12 +16,25 @@
     <hr class="break-line">
 
     <div class="big-bullet">
+      <img src="images/warning-bullet.svg" alt="warning"
+           class="big-bullet-icon"/>
+      <div class="big-bullet-content">
+        <h2 class="big-bullet-heading">DOES NOT work in all pages</h2>
+        <p class="big-bullet-text">
+          For those rare pages, a <strong>new tab will open</strong>, since
+          Chrome prevents extensions from messing with internal
+          pages like New Tab, Bookmarks, and this help page.
+        </p>
+      </div>
+    </div>
+
+    <div class="big-bullet">
       <img src="images/keyboard.svg" alt="keyboard" class="big-bullet-icon">
       <div class="big-bullet-content">
         <h2 class="big-bullet-heading">Set a keyboard shortcut.</h2>
         <p class="big-bullet-text">
-          Go to chrome://extensions. Navigate to hamburger menu
-          at the top right and set a keyboard shortcut for TabView.
+          Go to chrome://extensions. Navigate to hamburger menu (3 lines)
+          at the top left and set a keyboard shortcut for TabView.
         </p>
       </div>
     </div>
@@ -33,7 +47,8 @@
           TabView can't display thumbnails for tabs that have never
           been clicked on. If a tab is missing a thumbnail, navigate
           to it or press the
-          <img src="images/scan-icon-black.png" alt="scan icon" class="inline-icon">
+          <img src="images/scan-icon-black.png" alt="scan icon"
+               class="inline-icon">
           button to scan all tabs in the window.
         </p>
       </div>
@@ -44,12 +59,13 @@
     <div id="shortcut-list-wrapper">
       <ul id="shortcut-list">
         <li class="shortcut-entry">
-          <div id="esc-shortcut-wrapper" class="shortcut-icon-wrapper">
+          <div class="shortcut-icon-wrapper">
             <img src="images/esc.svg" alt="escape key"
-                 id="esc-shortcut-icon" class="shortcut-icon"/>
+                 class="shortcut-icon"/>
           </div>
           <p class="shortcut-text">Close TabView modal</p>
         </li>
+
         <li class="shortcut-entry">
           <div id="mouse-shortcut-wrapper" class="shortcut-icon-wrapper">
             <img src="images/mouse.svg" alt="middle mouse key"
@@ -57,6 +73,24 @@
           </div>
           <p class="shortcut-text">Close individual tab</p>
         </li>
+
+        <li class="shortcut-entry">
+          <div class="shortcut-icon-wrapper">
+            <img src="images/tab-key.svg" alt="middle mouse key"
+                 class="shortcut-icon"/>
+          </div>
+          <p class="shortcut-text">Highlight next tab (
+            <strong>Shift</strong> for previous) </p>
+        </li>
+
+        <li class="shortcut-entry">
+          <div class="shortcut-icon-wrapper">
+            <img src="images/space-key.svg" alt="middle mouse key"
+                 class="shortcut-icon"/>
+          </div>
+          <p class="shortcut-text">Go to highlighted tab</p>
+        </li>
+
       </ul>
     </div>
 

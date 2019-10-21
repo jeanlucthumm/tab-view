@@ -56,6 +56,10 @@ body {
   }
 }
 
+p strong {
+  color: black;
+}
+
 .inline-icon {
   display: inline;
   height: 14px;
@@ -68,6 +72,7 @@ body {
   flex-direction: column;
 
   #shortcut-list {
+    width: 100%;
     align-self: center;
 
     list-style-type: none;
@@ -79,9 +84,15 @@ body {
       align-content: center;
 
       .shortcut-icon-wrapper {
-        width: 50px;
+        height: 30px;
+        width: 40%;
         align-self: center;
-        text-align: center;
+        text-align: right;
+        padding-right: 13px;
+      }
+
+      .shortcut-text {
+        width: 50%
       }
 
       .shortcut-icon {
@@ -89,13 +100,14 @@ body {
         height: 100%;
       }
 
-      #esc-shortcut-wrapper {
-        height: 30px;
-      }
-
       #mouse-shortcut-wrapper {
         height: 40px;
+
+        #mouse-shortcut-icon {
+          margin-right: 4px;
+        }
       }
+
 
       .shortcut-text {
         align-self: center;
