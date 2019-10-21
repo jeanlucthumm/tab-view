@@ -37,26 +37,30 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   } else if (message === 'closed') {
     let key = genModalFlagKey(sender.tab.id);
     chrome.storage.local.remove(key);
+    closeBackupIfOpen();
   } else if (message === 'help') {
     help();
+    closeBackupIfOpen();
   } else if (message.cmd === 'tab_switch') {
     chrome.tabs.highlight({
       windowId: message.windowId,
       tabs: message.tabs
     });
-
-    // Close if backup tab
-    chrome.storage.local.get("backup_id", items => {
-      if (!items.hasOwnProperty("backup_id")) return;
-      chrome.tabs.remove(items.backup_id);
-      chrome.storage.local.remove("backup_id", () => {
-        err("remove backup id", chrome.runtime.lastError);
-      });
-    });
+    closeBackupIfOpen();
   }
 
   sendResponse();
 });
+
+function closeBackupIfOpen() {
+  chrome.storage.local.get("backup_id", items => {
+    if (!items.hasOwnProperty("backup_id")) return;
+    chrome.tabs.remove(items.backup_id);
+    chrome.storage.local.remove("backup_id", () => {
+      err("remove backup id", chrome.runtime.lastError);
+    });
+  });
+}
 
 // Captures the currently visible tab and saves to local storage. windowId
 // and tabId refer to the currently visible tab and must be known
