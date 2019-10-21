@@ -14,8 +14,8 @@
   <text x="72.697311" y="55.922886" fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="72.697311" y="65.286652" stroke-width=".26458"/></text>
   <g transform="translate(4.4979 4.2333)">
    <g transform="translate(-89.281 -64.558)">
-    <rect x="39.247" y="151.71" width="14.654" height="12.994" ry="3.6094" fill="#fff" stroke="#474a51" stroke-width=".38942"/>
-    <text x="41.895836" y="160.44122" fill="#000000" font-family="sans-serif" font-size="6.4763px" letter-spacing="0px" stroke-width=".16191" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="41.895836" y="160.44122" stroke-width=".16191">Esc</tspan></text>
+    <rect x="39.247" y="151.71" width="14.654" height="12.994" ry="3.6094" fill="#fff" stroke="#474a51" stroke-width=".38901"/>
+    <text x="40.938862" y="160.52177" fill="#000000" font-family="sans-serif" font-size="6.4763px" letter-spacing="0px" stroke-width=".16191" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="40.938862" y="160.52177" stroke-width=".16191">Esc</tspan></text>
    </g>
   </g>
  </g>
