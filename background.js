@@ -52,6 +52,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   sendResponse();
 });
 
+// Checks if the back up is open by looking up the special flag in storage,
+// then closes it if needed
 function closeBackupIfOpen() {
   chrome.storage.local.get("backup_id", items => {
     if (!items.hasOwnProperty("backup_id")) return;
