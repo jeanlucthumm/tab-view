@@ -254,6 +254,46 @@ function closeClick() {
   this.closest('.thumb').remove();
 }
 
+// Handles the user requesting to go to the last tab. May deny or switch tab
+function handleLastTab() {
+  // Check that there is a last tab
+  chrome.windows.getCurrent(win => {
+    if (err("get window for last tab", chrome.runtime.lastError)) return;
+    let winKey = genWindowLastTabKey(win.id);
+    chrome.storage.local.get(winKey, items => {
+      // Last button does not work if there is no info on window or last is nul
+      if (!items.hasOwnProperty(winKey) || items[winKey].last == null) {
+        displayDeny();
+        return;
+      }
+
+      // Try to highlight last tab
+      let last = items[winKey].last;
+      console.log("last" + last); // DEBGU
+      chrome.tabs.get(last, tab => {
+        if (chrome.runtime.lastError || tab.windowId !== win.id) {
+          displayDeny();
+          return;
+        }
+
+        window.parent.postMessage({
+          cmd: 'tab_switch', windowId: win.id,
+          tabs: [tab.index]
+        }, '*');
+      });
+    });
+  });
+}
+
+function displayDeny() {
+  let icon = document.getElementById('denied-icon');
+  if (icon === null) return;
+  icon.classList.add('fade');
+  icon.addEventListener('animationend', () => {
+    icon.classList.remove('fade');
+  });
+}
+
 window.onkeydown = ev => {
   if (ev.key === 'Escape') {
     window.parent.postMessage('close', '*');
@@ -266,5 +306,7 @@ window.onkeydown = ev => {
     let thumb = tState.highlighted;
     if (thumb === null) return false;
     pictureClick.call(thumb);
+  } else if (ev.key === 'b') {
+    handleLastTab();
   }
 };

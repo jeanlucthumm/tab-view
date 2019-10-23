@@ -6,14 +6,18 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 // Remove all thumbnails on start up just in case close tab event didn't
-// fire. The only thing in storage is thumbnails.
+// fire.
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.clear();
 });
 
-// If tab is navigated to, capture thumbnail
+chrome.windows.onRemoved.addListener(windowId => {
+  chrome.storage.local.remove(genWindowLastTabKey(windowId));
+})
+
 chrome.tabs.onActivated.addListener(activeInfo => {
   captureThumbnail(activeInfo.windowId, activeInfo.tabId);
+  updateLastTab(activeInfo.windowId, activeInfo.tabId);
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -51,6 +55,35 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   sendResponse();
 });
+
+// Update the current and last tab variables. Old current becomes
+// new last
+function updateLastTab(windowId, currentTabId) {
+  let winKey = genWindowLastTabKey(windowId);
+  // Backup tabs are never considered
+  chrome.storage.local.get('backup_id', items => {
+    if (items.hasOwnProperty('backup_id') && items.backup_id === currentTabId) {
+      return;
+    }
+
+    chrome.storage.local.get(winKey, items => {
+      if (!items.hasOwnProperty(winKey)) {
+        chrome.storage.local.set({
+          [winKey]: {
+            current: currentTabId.tabId,
+            last: null
+          }
+        });
+        return;
+      }
+
+      let data = items[winKey];
+      data.last = data.current;
+      data.current = currentTabId;
+      chrome.storage.local.set({[winKey]: data});
+    });
+  });
+}
 
 // Checks if the back up is open by looking up the special flag in storage,
 // then closes it if needed

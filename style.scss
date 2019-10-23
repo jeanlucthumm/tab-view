@@ -140,6 +140,31 @@ button {
   height: 22px;
 }
 
+#denied-icon {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+}
+
+#denied-icon.fade {
+  animation-name: fadeOut;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
 $tWidth: 324px; // width of one thumbnail
 $tRat: 1.05; // max ratio of page to content
 

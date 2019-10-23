@@ -9,12 +9,20 @@ function genModalFlagKey(tabId) {
   return "mo#" + tabId;
 }
 
+function genWindowLastTabKey(winId) {
+  return "win#" + winId;
+}
+
 // Error reporting utility. 'msg' is prepended to the error message and printed
 // to console, if 'error' is defined. Returns true in that case, and false
 // otherwise.
 function err(msg, error) {
   if (error) {
-    console.error(msg + ": " + error);
+    if (error.hasOwnProperty('message')) {
+      console.error(msg + ": " + error.message);
+    } else {
+      console.error(msg + ": no err msg");
+    }
     return true;
   }
   return false;
