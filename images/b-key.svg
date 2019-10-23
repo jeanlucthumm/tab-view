@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg width="15.044mm" height="13.383mm" version="1.1" viewBox="0 0 15.044 13.383" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<svg width="15.044mm" height="13.383mm" version="1.1" viewBox="0 0 15.043545 13.383224" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
  <metadata>
   <rdf:RDF>
    <cc:Work rdf:about="">
@@ -14,8 +14,8 @@
   <text x="72.697311" y="55.922886" fill="#000000" font-family="sans-serif" font-size="10.583px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="72.697311" y="65.286652" stroke-width=".26458"/></text>
   <g transform="translate(4.4979 4.2333)">
    <g transform="translate(-89.281 -64.558)">
-    <rect x="39.247" y="151.71" width="14.654" height="12.994" ry="3.6094" fill="#fff" stroke="#474a51" stroke-width=".38942"/>
-    <text x="43.66341" y="161.18135" fill="#000000" font-family="sans-serif" font-size="8.16px" letter-spacing="0px" stroke-width=".204" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="43.66341" y="161.18135" stroke-width=".204">B</tspan></text>
+    <rect x="39.247" y="151.71" width="14.654" height="12.994" ry="3.6094" fill="#fff" stroke="#474a51" stroke-width=".38901"/>
+    <text x="44.263973" y="160.56763" fill="#000000" font-family="sans-serif" font-size="6.4763px" letter-spacing="0px" stroke-width=".16191" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="44.263973" y="160.56763" stroke-width=".16191">B</tspan></text>
    </g>
   </g>
  </g>
