@@ -80,7 +80,7 @@ class ThumbnailState {
     let mid = window.innerHeight / 2;
     let delta = (rect.y + rect.height / 2) - mid;
     if (fast) {
-      window.scrollBy(0, Math.abs(delta));
+      window.scrollBy(0, Math.round(delta));
     } else {
       window.scrollBy({
         top: Math.round(delta),
@@ -269,7 +269,6 @@ function handleLastTab() {
 
       // Try to highlight last tab
       let last = items[winKey].last;
-      console.log("last" + last); // DEBGU
       chrome.tabs.get(last, tab => {
         if (chrome.runtime.lastError || tab.windowId !== win.id) {
           displayDeny();
