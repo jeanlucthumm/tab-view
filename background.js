@@ -1,8 +1,6 @@
 /// Event Handlers
-
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.clear();
-  help();
 });
 
 // Remove all thumbnails on start up just in case close tab event didn't
@@ -213,17 +211,6 @@ function openBackupTab() {
     active: true
   }, (tab) => {
     if (err("create backup tab", chrome.runtime.lastError)) return;
-
-    // Only display alert once
-    chrome.storage.local.get("backup_alerted", items => {
-      if (err("get backup alerted key", chrome.runtime.lastError)) return;
-      if (items.hasOwnProperty("backup_alerted")) return;
-
-      alert(failedInjectMessage);
-      chrome.storage.local.set({"backup_alerted": true}, () => {
-        err("set backup alerted key", chrome.runtime.lastError);
-      });
-    });
 
     // Store the tab ID so we recognize it and close it when the user selects
     // a thumb
