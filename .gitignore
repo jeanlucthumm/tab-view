@@ -179,3 +179,4 @@ fabric.properties
 *.css
 .DS_Store
 build/
+*.zip
