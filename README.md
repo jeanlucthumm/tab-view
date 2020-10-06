@@ -1,5 +1,7 @@
 # TabView
 
+[Chrome Webstore Page](https://chrome.google.com/webstore/detail/tabview/mdbhlojiglbmhhmdcepaloomhjicbiga?hl=en-US)
+
 TabView is a chrome extension that lets you visually and interactively browse
 your tabs.
 
